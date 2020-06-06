@@ -7,7 +7,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 public class Ram implements Comparable<Ram>, NumberString {
-    int ramValue;
+    private final int ramValue;
 
     public Ram(String ramValue) {
         this.ramValue = Tools.onlyNumbers(ramValue);

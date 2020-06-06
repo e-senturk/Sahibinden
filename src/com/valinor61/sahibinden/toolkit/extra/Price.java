@@ -4,7 +4,7 @@ import com.valinor61.sahibinden.toolkit.Tools;
 import org.jetbrains.annotations.NotNull;
 
 public class Price implements Comparable<Price>, NumberString {
-    int priceValue;
+    private final int priceValue;
 
     public Price(int priceValue) {
         this.priceValue = priceValue;

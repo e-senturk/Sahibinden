@@ -1,7 +1,7 @@
 module Sahibinden {
     requires javafx.fxml;
     requires javafx.controls;
-    requires javafx.swing;
+    requires java.desktop;
     requires selenium;
 
     opens com.valinor61.sahibinden;

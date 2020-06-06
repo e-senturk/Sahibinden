@@ -68,6 +68,10 @@
     -fx-background-color: linear-gradient(#101010 0%, #424141 100%);
 }
 
+.text-area {
+    -fx-wrap-text: true;
+}
+
 VBox#defaultSettings {
     -fx-background-color: white;
 }

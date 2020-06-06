@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" onKeyPressed="#enterCalculateLinks" prefHeight="730.0"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" onKeyPressed="#handleKeyboardEvent" prefHeight="730.0"
             prefWidth="1333.0" stylesheets="@/styles.css" xmlns="http://javafx.com/javafx/10.0.2-internal"
             fx:controller="com.valinor61.sahibinden.Controller">
     <top>
@@ -24,7 +24,7 @@
                     <Insets right="5.0"/>
                 </GridPane.margin>
             </TextField>
-            <Button alignment="CENTER" minWidth="35.0" mnemonicParsing="false" onAction="#calculateLinks"
+            <Button alignment="CENTER" minWidth="35.0" mnemonicParsing="false" onAction="#handleCalculateLinks"
                     prefWidth="20.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER"
                     GridPane.rowIndex="0">
                 <graphic>
@@ -40,7 +40,8 @@
                 </tooltip>
 
             </Button>
-            <Button alignment="CENTER" minWidth="35.0" mnemonicParsing="false" onAction="#stopLink" prefWidth="20.0"
+            <Button alignment="CENTER" minWidth="35.0" mnemonicParsing="false" onAction="#handleStopLink"
+                    prefWidth="20.0"
                     GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="0">
                 <graphic>
                     <ImageView fitWidth="20.0" preserveRatio="true">
@@ -227,13 +228,13 @@
                                             <Insets bottom="5.0" top="5.0"/>
                                         </VBox.margin>
                                         <VBox>
-                                            <CheckBox fx:id="year" mnemonicParsing="false" onAction="#updateYearField"
+                                            <CheckBox fx:id="year" mnemonicParsing="false" onAction="#handleYearField"
                                                       text="Yıl Aralığı">
                                                 <VBox.margin>
                                                     <Insets top="5.0"/>
                                                 </VBox.margin>
                                             </CheckBox>
-                                            <CheckBox fx:id="km" mnemonicParsing="false" onAction="#updateKMField"
+                                            <CheckBox fx:id="km" mnemonicParsing="false" onAction="#handleKMField"
                                                       text="Km Aralığı">
                                                 <VBox.margin>
                                                     <Insets top="10.0"/>
@@ -327,7 +328,7 @@
             </Accordion>
             <VBox id="defaultSettings" GridPane.columnIndex="0" GridPane.rowIndex="1">
                 <HBox>
-                    <CheckBox fx:id="searchText" mnemonicParsing="false" onAction="#keywordSearchUpdate"
+                    <CheckBox fx:id="searchText" mnemonicParsing="false" onAction="#handleKeywordSearch"
                               text="Kelime Ara">
                         <HBox.margin>
                             <Insets left="11.0"/>
@@ -374,7 +375,7 @@
                     <VBox.margin>
                         <Insets bottom="4.0" left="11.0" top="4.0"/>
                     </VBox.margin>
-                    <CheckBox fx:id="price" mnemonicParsing="false" onAction="#updatePriceField" text="Fiyat Aralığı">
+                    <CheckBox fx:id="price" mnemonicParsing="false" onAction="#handlePriceField" text="Fiyat Aralığı">
                         <HBox.margin>
                             <Insets right="3.0" top="3.0"/>
                         </HBox.margin>
@@ -392,13 +393,13 @@
                         <Insets left="11.0"/>
                     </VBox.margin>
                 </CheckBox>
-                <CheckBox fx:id="pageSize" mnemonicParsing="false" onAction="#lastXDayBoxUpdate" text="50 İlana Bak">
+                <CheckBox fx:id="pageSize" mnemonicParsing="false" onAction="#handleLastXDay" text="50 İlana Bak">
                     <VBox.margin>
                         <Insets left="11.0"/>
                     </VBox.margin>
                 </CheckBox>
                 <HBox>
-                    <CheckBox fx:id="lastXDay" mnemonicParsing="false" onAction="#lastXDayBoxUpdate" text="İlan Tarihi">
+                    <CheckBox fx:id="lastXDay" mnemonicParsing="false" onAction="#handleLastXDay" text="İlan Tarihi">
                         <padding>
                             <Insets top="7.0"/>
                         </padding>

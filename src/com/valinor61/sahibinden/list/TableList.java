@@ -14,16 +14,17 @@ import java.util.LinkedList;
 
 public class TableList {
     protected static String stockLogo;
+    protected final Price price;
+    protected final String location;
+    protected final String link;
+    protected final String dateDay;
+    protected final String dateYear;
+    protected final String dateFull;
+    protected final String imageUrl;
     protected String model;
     protected ImageView image;
-    protected String imageUrl;
     protected String title;
-    protected Price price;
-    protected String location;
-    protected String link;
-    protected String dateDay;
-    protected String dateYear;
-    protected String dateFull;
+
     protected Price average;
     protected Difference difference;
 

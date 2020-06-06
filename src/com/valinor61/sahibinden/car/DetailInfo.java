@@ -3,11 +3,11 @@ package com.valinor61.sahibinden.car;
 import com.valinor61.sahibinden.toolkit.Tools;
 
 public class DetailInfo {
-    protected String brand;
-    protected String model;
-    protected String warranty;
-    protected String seller;
-    protected int price;
+    protected final String brand;
+    protected final String model;
+    protected final String warranty;
+    protected final String seller;
+    protected final int price;
 
     public DetailInfo(String brand, String model, String warranty, String seller, int price) {
         this.brand = brand;

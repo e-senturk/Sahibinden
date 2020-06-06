@@ -30,8 +30,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.io.IOException;
@@ -41,6 +39,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 public class Controller {
@@ -48,17 +48,17 @@ public class Controller {
     private static String laptopSourceUrl;
     private static String carSourceUrl;
     private static String mainUrl;
+    private static CheckBox[] comboBoxes;
     @FXML
-    public ToggleGroup groupFirefox, groupImage, groupSearch;
+    private ToggleGroup groupFirefox, groupImage, groupSearch;
     @FXML
-    public ToggleButton filterToggle;
+    private ToggleButton filterToggle;
     @FXML
-    public ImageView logoToggle;
+    private ImageView logoToggle;
     @FXML
-    public Tooltip tooltipToggle;
-    LinkedList<TableList> localListTemp, fullListTemp;
-    private ObservableList<TableList> finalList;
-    private ObservableList<TableList> localList;
+    private Tooltip tooltipToggle;
+    private LinkedList<TableList> localListTemp, fullListTemp;
+    private ObservableList<TableList> finalList, localList;
     private LinkedList<DataBase> dataBaseCar, dataBaseLaptop;
     private int[] ranges;
     private boolean[] processorValues;
@@ -141,6 +141,10 @@ public class Controller {
     }
 
     public void initialize() {
+        comboBoxes = new CheckBox[]{series, model, fuel, gear, status, seller, year, km, price, plate,
+                /*10*/  warranty, power, color, chasis, exchange, searchText, searchContext, newToOld, lastXDay, unpainted,
+                /*20*/  pageSize, brandLaptop, processorLaptop, ramLaptop, hddLaptop, ssdLaptop, gpuLaptop, screenSizeLaptop,
+                /*28*/  screenResolutionLaptop, engine, horsePower, brandProcessorLaptop, seriesProcessorLaptop, generationProcessorLaptop};
         dataBaseCar = DataBase.readDataBase("data/databaseCar.dat");
         dataBaseLaptop = DataBase.readDataBase("data/databaseLaptop.dat");
         localListTemp = new LinkedList<>();
@@ -171,7 +175,7 @@ public class Controller {
         initializeTable();
     }
 
-    public void initializeTable() {
+    private void initializeTable() {
         tableImage.setCellValueFactory(new PropertyValueFactory<>("image"));
         tableModel.setCellValueFactory(new PropertyValueFactory<>("model"));
         tablePrice.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -188,7 +192,7 @@ public class Controller {
         }
     }
 
-    public void initializeCarTable() {
+    private void initializeCarTable() {
         tableModel.setText("Model");
         tableSpecs1.setCellValueFactory(new PropertyValueFactory<>("year"));
         tableSpecs1.setText("Yıl");
@@ -201,7 +205,7 @@ public class Controller {
         tableSpecs1.setPrefWidth(75);
     }
 
-    public void initializeLaptopTable() {
+    private void initializeLaptopTable() {
         tableModel.setText("Marka");
         tableSpecs1.setCellValueFactory(new PropertyValueFactory<>("processor"));
         tableSpecs1.setText("İşlemci");
@@ -215,7 +219,7 @@ public class Controller {
     }
 
     //Updates datebase files
-    public void updateDatebase() {
+    private void updateDatebase() {
         Runnable task = () -> {
             if (!Firefox.isOperates()) {
                 Platform.runLater(() -> logArea.setText("Firefox Başlatılıyor."));
@@ -233,30 +237,77 @@ public class Controller {
         new Thread(task).start();
     }
 
-    public void enterCalculateLinks(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER) {
-            calculateLinks();
-        }
-        if (event.getCode() == KeyCode.ESCAPE) {
-            stopLink();
-        }
-    }
-
-    public void readRangeValues() {
+    private void readRangeValues() {
         ranges[0] = Tools.onlyNumbers(yearField.getText());
         ranges[1] = Tools.onlyNumbers(kmField.getText());
         ranges[2] = Tools.onlyNumbers(priceField.getText());
     }
 
-    public void readProcessorValues() {
+    private void readProcessorValues() {
         processorValues[0] = brandProcessorLaptop.isSelected();
         processorValues[1] = seriesProcessorLaptop.isSelected();
         processorValues[2] = generationProcessorLaptop.isSelected();
     }
 
+    private ArrayList<Boolean> getActivationArray() {
+        return Arrays.stream(comboBoxes).map(CheckBox::isSelected).collect(Collectors.toCollection(() -> new ArrayList<>(Settings.actionListSize)));
+    }
+
+    private void setActivationArray(ArrayList<Boolean> activationSet) {
+        IntStream.range(0, activationSet.size()).forEach(i -> comboBoxes[i].setSelected(activationSet.get(i)));
+        handleKeywordSearch();
+        handleLastXDay();
+        updateRangeValues();
+    }
+
+    private void updateRangeValues() {
+        yearField.setText(String.valueOf(ranges[0]));
+        kmField.setText(String.valueOf(ranges[1]));
+        priceField.setText(String.valueOf(ranges[2]));
+    }
+
+    //Speed Functions
+    private int getSystemSpeed() {
+        if (veryfastSearchSpeed.isSelected()) return 1000;
+        else if (fastSearchSpeed.isSelected()) return 2000;
+        else if (regularSearchSpeed.isSelected()) return 3000;
+        else if (slowSearchSpeed.isSelected()) return 5000;
+        else if (verySlowSearchSpeed.isSelected()) return 10000;
+        else return 2000;
+    }
+
+    private void readSystemSpeed(int valueSpeed) {
+        if (valueSpeed == 1000) veryfastSearchSpeed.setSelected(true);
+        else if (valueSpeed == 2000) fastSearchSpeed.setSelected(true);
+        else if (valueSpeed == 3000) regularSearchSpeed.setSelected(true);
+        else if (valueSpeed == 5000) slowSearchSpeed.setSelected(true);
+        else if (valueSpeed == 10000) verySlowSearchSpeed.setSelected(true);
+        else fastSearchSpeed.setSelected(true);
+    }
+
+    private int getImageSpeed() {
+        if (zeroImageSpeed.isSelected()) return 0;
+        else if (veryfastImageSpeed.isSelected()) return 1;
+        else if (fastImageSpeed.isSelected()) return 2;
+        else if (regularImageSpeed.isSelected()) return 3;
+        else if (slowImageSpeed.isSelected()) return 4;
+        else if (verySlowImageSpeed.isSelected()) return 5;
+        else return 6;
+    }
+
+    private void readImageSpeed(int valueSpeed, boolean valueActivate) {
+        if (valueActivate) showImages.setSelected(true);
+        if (valueSpeed == 0) zeroImageSpeed.setSelected(true);
+        else if (valueSpeed == 1) veryfastImageSpeed.setSelected(true);
+        else if (valueSpeed == 3) regularImageSpeed.setSelected(true);
+        else if (valueSpeed == 4) slowImageSpeed.setSelected(true);
+        else if (valueSpeed == 5) verySlowImageSpeed.setSelected(true);
+        else fastImageSpeed.setSelected(true);
+    }
 
     //Calculation function
-    public void calculateLinks() {
+    @FXML
+    private void handleCalculateLinks() {
         countArea.setText("");
         //Reading year, km and price boxes
         readRangeValues();
@@ -314,8 +365,6 @@ public class Controller {
                         calculateFinalList(url, htmlContent);
                     }
                 }
-
-
                 //Make all list elements unique
                 LinkedList<TableList> temp = new LinkedList<>();
                 for (TableList x : fullListTemp) {
@@ -327,6 +376,7 @@ public class Controller {
                         temp.add(x);
                     }
                 }
+                //Update images if this feature enabled or system not interrupted.
                 if (showImages.isSelected() && working) {
                     Platform.runLater(() -> logArea.setText("Resimler Güncelleniyor."));
                     for (TableList x : temp) {
@@ -336,6 +386,7 @@ public class Controller {
                         x.updateImage();
                     }
                 }
+                //Set all items for display
                 finalList.setAll(temp);
                 localList.setAll(localListTemp);
                 //Update images from links for obtained list
@@ -387,13 +438,7 @@ public class Controller {
         new Thread(task).start();
     }
 
-    //Stops Links
-    public void stopLink() {
-        working = false;
-    }
-
-
-    public void detailCalculate(String htmlContent) {
+    private void detailCalculate(String htmlContent) {
         detail = true;
         filterToggle.setSelected(false);
         handleFilterExtras();
@@ -418,7 +463,7 @@ public class Controller {
         } else supportedSub = false;
     }
 
-    public void listCalculate(String htmlContent) {
+    private void listCalculate(String htmlContent) {
         detail = false;
         fullListTemp = new LinkedList<>();
         localListTemp = new LinkedList<>();
@@ -432,9 +477,8 @@ public class Controller {
                 if (working) {
                     String k = String.valueOf(i);
                     int percentageSmaller = i * 100 / listLinks.size() - 50 / listLinks.size();
-                    if (percentageSmaller < 0) {
+                    if (percentageSmaller < 0)
                         percentageSmaller = 0;
-                    }
                     int percentageBigger = i * 100 / listLinks.size();
                     String percentage1 = "% " + percentageSmaller;
                     String percentage2 = "% " + percentageBigger;
@@ -514,119 +558,32 @@ public class Controller {
 
     private void calculateFinalList(String url, String htmlContent) {
         if (Firefox.isOperates()) {
-            if (url.contains("detay")) {
+            if (url.contains("detay"))
                 detailCalculate(htmlContent);
-            } else {
+            else
                 listCalculate(htmlContent);
-            }
         }
+
     }
 
 
-    @NotNull
-    @Contract(" -> new")
-    private ArrayList<Boolean> getActivationArray() {
-        return new ArrayList<>(Arrays.asList(
-                series.isSelected(),         //0
-                model.isSelected(),         //1
-                fuel.isSelected(),             //2
-                gear.isSelected(),             //3
-                status.isSelected(),         //4
-                seller.isSelected(),         //5
-                year.isSelected(),             //6
-                km.isSelected(),             //7
-                price.isSelected(),         //8
-                plate.isSelected(),         //9
-                warranty.isSelected(),         //10
-                power.isSelected(),         //11
-                color.isSelected(),         //12
-                chasis.isSelected(),         //13
-                exchange.isSelected(),         //14
-                searchText.isSelected(),     //15
-                searchContext.isSelected(),  //16
-                newToOld.isSelected(),         //17
-                lastXDay.isSelected(),       //18
-                unpainted.isSelected(),      //19
-                pageSize.isSelected(),       //20
-                brandLaptop.isSelected(),    //21
-                processorLaptop.isSelected(),//22
-                ramLaptop.isSelected(),      //23
-                hddLaptop.isSelected(),      //24
-                ssdLaptop.isSelected(),      //25
-                gpuLaptop.isSelected(),      //26
-                screenSizeLaptop.isSelected(),//27
-                screenResolutionLaptop.isSelected(), //28
-                engine.isSelected(),
-                horsePower.isSelected(),
-                brandProcessorLaptop.isSelected(),
-                seriesProcessorLaptop.isSelected(),
-                generationProcessorLaptop.isSelected()));
-    }
-
-    private void setActivationArray(ArrayList<Boolean> activationSet) {
-        if (activationSet.size() == Settings.actionListSize) {
-            series.setSelected(activationSet.get(0));         //0
-            model.setSelected(activationSet.get(1));         //1
-            fuel.setSelected(activationSet.get(2));             //2
-            gear.setSelected(activationSet.get(3));             //3
-            status.setSelected(activationSet.get(4));         //4
-            seller.setSelected(activationSet.get(5));         //5
-            year.setSelected(activationSet.get(6));             //6
-            km.setSelected(activationSet.get(7));             //7
-            price.setSelected(activationSet.get(8));         //8
-            plate.setSelected(activationSet.get(9));         //9
-            warranty.setSelected(activationSet.get(10));         //10
-            power.setSelected(activationSet.get(11));         //11
-            color.setSelected(activationSet.get(12));         //12
-            chasis.setSelected(activationSet.get(13));         //13
-            exchange.setSelected(activationSet.get(14));         //14
-            searchText.setSelected(activationSet.get(15));     //15
-            searchContext.setSelected(activationSet.get(16)); //16
-            newToOld.setSelected(activationSet.get(17));         //17
-            lastXDay.setSelected(activationSet.get(18));      //18
-            unpainted.setSelected(activationSet.get(19));     //19
-            pageSize.setSelected(activationSet.get(20));      //20
-            brandLaptop.setSelected(activationSet.get(21));    //21
-            processorLaptop.setSelected(activationSet.get(22));//22
-            ramLaptop.setSelected(activationSet.get(23));      //23
-            hddLaptop.setSelected(activationSet.get(24));      //24
-            ssdLaptop.setSelected(activationSet.get(25));     //25
-            gpuLaptop.setSelected(activationSet.get(26));      //26
-            screenSizeLaptop.setSelected(activationSet.get(27));//27
-            screenResolutionLaptop.setSelected(activationSet.get(28)); //28
-
-            engine.setSelected(activationSet.get(29));//28
-            horsePower.setSelected(activationSet.get(30)); //30
-            brandProcessorLaptop.setSelected(activationSet.get(31));
-            seriesProcessorLaptop.setSelected(activationSet.get(32));
-            generationProcessorLaptop.setSelected(activationSet.get(33));
-        }
-        keywordSearchUpdate();
-        lastXDayBoxUpdate();
-        updateRangeValues();
-    }
-
-    private void updateRangeValues() {
-        yearField.setText(String.valueOf(ranges[0]));
-        kmField.setText(String.valueOf(ranges[1]));
-        priceField.setText(String.valueOf(ranges[2]));
-    }
-
-    public void saveSettings() {
+    @FXML
+    private void saveSettings() {
         ArrayList<Boolean> activations = getActivationArray();
         ranges[0] = Tools.onlyNumbers(yearField.getText());
         ranges[1] = Tools.onlyNumbers(kmField.getText());
         ranges[2] = Tools.onlyNumbers(priceField.getText());
         boolean[] firefox = new boolean[]{visibleFirefox.isSelected(), outScreenFirefox.isSelected(), hiddenScreenFirefox.isSelected()};
-        Settings.writeActivationValues(activations, ranges, keyword.getText(), Tools.formatLastXEN(lastXDayValue.getSelectionModel().getSelectedItem()), firefox, getSelectedSystemSpeed(), getSelectedSpeed(), showImages.isSelected(), filterToggle.isSelected());
+        Settings.writeActivationValues(activations, ranges, keyword.getText(), Tools.formatLastXEN(lastXDayValue.getSelectionModel().getSelectedItem()), firefox, getSystemSpeed(), getImageSpeed(), showImages.isSelected(), filterToggle.isSelected());
     }
 
-    public void saveOnlySettings() {
+    private void saveOnlySettings() {
         boolean[] firefox = new boolean[]{visibleFirefox.isSelected(), outScreenFirefox.isSelected(), hiddenScreenFirefox.isSelected()};
-        Settings.writeActivationValues(firefox, getSelectedSystemSpeed(), getSelectedSpeed(), showImages.isSelected(), filterToggle.isSelected());
+        Settings.writeActivationValues(firefox, getSystemSpeed(), getImageSpeed(), showImages.isSelected(), filterToggle.isSelected());
     }
 
-    public void readSettings() {
+    @FXML
+    private void readSettings() {
         boolean[] isCorrectRead = new boolean[]{true};
         Settings readed = Settings.readActivationValues(isCorrectRead);
         System.out.println(readed);
@@ -636,41 +593,30 @@ public class Controller {
         CarList.setStockLogo(readed.getStockLogo());
         Firefox.setUserAgent(readed.getUserAgent());
         ArrayList<Boolean> activationArray = readed.getActivationList();
-
         setActivationArray(activationArray);
         ranges = readed.getRanges();
         keyword.setText(readed.getKeyWord());
         lastXDayValue.getSelectionModel().select(Tools.formatLastXTR(readed.getLastXDay()));
         updateRangeValues();
-        updateYearField();
-        updateKMField();
-        updatePriceField();
-
-        if (readed.getFirefoxMenu() == 0) {
-            visibleFirefox.setSelected(true);
-        }
-        if (readed.getFirefoxMenu() == 1) {
-            outScreenFirefox.setSelected(true);
-        }
-        if (readed.getFirefoxMenu() == 2) {
-            hiddenScreenFirefox.setSelected(true);
-        }
-        if (!isCorrectRead[0]) {
-            saveSettings();
-        }
+        handleYearField();
+        handleKMField();
+        handlePriceField();
+        if (readed.getFirefoxMenu() == 0) visibleFirefox.setSelected(true);
+        if (readed.getFirefoxMenu() == 1) outScreenFirefox.setSelected(true);
+        if (readed.getFirefoxMenu() == 2) hiddenScreenFirefox.setSelected(true);
+        if (!isCorrectRead[0]) saveSettings();
         readSystemSpeed(readed.getSearchSpeed());
         readImageSpeed(readed.getImageSpeed(), readed.isShowImages());
-
         filterToggle.setSelected(readed.isHideAllItems());
     }
 
     @FXML
-    public void lastXDayBoxUpdate() {
+    private void handleLastXDay() {
         lastXDayValue.setDisable(!lastXDay.isSelected());
     }
 
     @FXML
-    public void keywordSearchUpdate() {
+    private void handleKeywordSearch() {
         if (searchText.isSelected()) {
             keyword.setDisable(false);
             searchContext.setDisable(false);
@@ -682,40 +628,23 @@ public class Controller {
     }
 
     @FXML
-    public void updateYearField() {
+    private void handleYearField() {
         yearField.setDisable(!year.isSelected());
     }
 
     @FXML
-    public void updateKMField() {
+    private void handleKMField() {
         kmField.setDisable(!km.isSelected());
     }
 
     @FXML
-    public void updatePriceField() {
+    private void handlePriceField() {
         priceField.setDisable(!price.isSelected());
     }
 
-    @FXML
-    public void handleExit() {
-        Platform.exit();
-    }
 
     @FXML
-    public void handleFirefox() {
-        Runnable task;
-        saveOnlySettings();
-        task = () -> {
-            Firefox.destroyFirefox();
-            if (!Firefox.isOperates()) {
-                Firefox.createFirefox(mainUrl, outScreenFirefox.isSelected(), hiddenScreenFirefox.isSelected());
-            }
-        };
-        new Thread(task).start();
-    }
-
-    @FXML
-    public void handleTableClick(MouseEvent event) {
+    private void handleTableClick(MouseEvent event) {
         try {
             if (table.getSelectionModel().getSelectedCells().get(0).getColumn() == 0 || event.getClickCount() == 2) {
                 if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
@@ -731,150 +660,35 @@ public class Controller {
         }
     }
 
-    @FXML
-    public void handleImageSpeed() {
-        saveOnlySettings();
-        imageUpdateSpeed.setVisible(showImages.isSelected());
-        tableImage.setVisible(showImages.isSelected());
-        if (showImages.isSelected()) {
-            if (zeroImageSpeed.isSelected()) {
-                Firefox.setImageUpdateSpeed(0);
-            } else if (veryfastImageSpeed.isSelected()) {
-                Firefox.setImageUpdateSpeed(1);
-            } else if (fastImageSpeed.isSelected()) {
-                Firefox.setImageUpdateSpeed(2);
-            } else if (regularImageSpeed.isSelected()) {
-                Firefox.setImageUpdateSpeed(5);
-            } else if (slowImageSpeed.isSelected()) {
-                Firefox.setImageUpdateSpeed(20);
-            } else if (verySlowImageSpeed.isSelected()) {
-                Firefox.setImageUpdateSpeed(100);
-            } else {
-                Firefox.setImageUpdateSpeed(10);
-            }
-        }
-    }
 
     @FXML
-    public void handleSearchSpeed() {
-        saveOnlySettings();
-        if (veryfastSearchSpeed.isSelected()) {
-            Firefox.setSearchUpdateSpeed(1000);
-        } else if (fastSearchSpeed.isSelected()) {
-            Firefox.setSearchUpdateSpeed(2000);
-        } else if (regularSearchSpeed.isSelected()) {
-            Firefox.setSearchUpdateSpeed(3000);
-        } else if (slowSearchSpeed.isSelected()) {
-            Firefox.setSearchUpdateSpeed(5000);
-        } else if (verySlowSearchSpeed.isSelected()) {
-            Firefox.setSearchUpdateSpeed(10000);
-        } else {
-            Firefox.setSearchUpdateSpeed(2000);
-        }
-    }
-
-    public int getSelectedSystemSpeed() {
-        if (veryfastSearchSpeed.isSelected()) {
-            return 1000;
-        } else if (fastSearchSpeed.isSelected()) {
-            return 2000;
-        } else if (regularSearchSpeed.isSelected()) {
-            return 3000;
-        } else if (slowSearchSpeed.isSelected()) {
-            return 5000;
-        } else if (verySlowSearchSpeed.isSelected()) {
-            return 10000;
-        } else {
-            return 2000;
-        }
-    }
-
-    public void readSystemSpeed(int valueSpeed) {
-        if (valueSpeed == 1000) {
-            veryfastSearchSpeed.setSelected(true);
-        } else if (valueSpeed == 2000) {
-            fastSearchSpeed.setSelected(true);
-        } else if (valueSpeed == 3000) {
-            regularSearchSpeed.setSelected(true);
-        } else if (valueSpeed == 5000) {
-            slowSearchSpeed.setSelected(true);
-        } else if (valueSpeed == 10000) {
-            verySlowSearchSpeed.setSelected(true);
-        } else {
-            fastSearchSpeed.setSelected(true);
-        }
-    }
-
-    public int getSelectedSpeed() {
-        if (zeroImageSpeed.isSelected()) {
-            return 0;
-        } else if (veryfastImageSpeed.isSelected()) {
-            return 1;
-        } else if (fastImageSpeed.isSelected()) {
-            return 2;
-        } else if (regularImageSpeed.isSelected()) {
-            return 3;
-        } else if (slowImageSpeed.isSelected()) {
-            return 4;
-        } else if (verySlowImageSpeed.isSelected()) {
-            return 5;
-        } else {
-            return 6;
-        }
-    }
-
-    public void readImageSpeed(int valueSpeed, boolean valueActivate) {
-        if (valueActivate) {
-            showImages.setSelected(true);
-        }
-        if (valueSpeed == 0) {
-            zeroImageSpeed.setSelected(true);
-        } else if (valueSpeed == 1) {
-            veryfastImageSpeed.setSelected(true);
-        } else if (valueSpeed == 3) {
-            regularImageSpeed.setSelected(true);
-        } else if (valueSpeed == 4) {
-            slowImageSpeed.setSelected(true);
-        } else if (valueSpeed == 5) {
-            verySlowImageSpeed.setSelected(true);
-        } else {
-            fastImageSpeed.setSelected(true);
-        }
-    }
-
-    public void handleFilterExtras() {
+    private void handleFilterExtras() {
         saveOnlySettings();
         if (filterToggle.isSelected() && !detail) {
             table.setItems(localList);
             logoToggle.setImage(new Image("showOF.png", 512, 512, false, false));
             tooltipToggle.setText("Tüm İlanları Göster");
-            if (localList.isEmpty()) {
-                countArea.setText("");
-            } else {
-                countArea.setText(localList.size() + " Adet Eşleşme Bulundu.");
-            }
+            if (localList.isEmpty()) countArea.setText("");
+            else countArea.setText(localList.size() + " Adet Eşleşme Bulundu.");
         } else {
             table.setItems(finalList);
             logoToggle.setImage(new Image("showON.png", 512, 512, false, false));
             tooltipToggle.setText("Sadece Ana İlanları Göster");
-            if (finalList.isEmpty()) {
-                countArea.setText("");
-            } else {
-                countArea.setText(finalList.size() + " Adet Eşleşme Bulundu.");
-            }
+            if (finalList.isEmpty()) countArea.setText("");
+            else countArea.setText(finalList.size() + " Adet Eşleşme Bulundu.");
         }
-        if (table.getItems().size() != 0) {
-            table.scrollTo(0);
-        }
+        if (table.getItems().size() != 0) table.scrollTo(0);
     }
 
-    public void handleProcessorToggle() {
+    @FXML
+    private void handleProcessorToggle() {
         brandProcessorLaptop.setDisable(!processorLaptop.isSelected());
         seriesProcessorLaptop.setDisable(!processorLaptop.isSelected());
         generationProcessorLaptop.setDisable(!processorLaptop.isSelected());
     }
 
-    public void handleAdvancedSettings() {
+    @FXML
+    private void handleAdvancedSettings() {
         //Yeni diyalog oluşturuldu.
         Dialog<ButtonType> dialog = new Dialog<>();
         //Oluşturulan diyalog ana ekrana bağlandı.
@@ -909,13 +723,58 @@ public class Controller {
             controller.processResult();
             saveSettings();
             System.out.println("Saving Settings Completed.");
-        } else if (result.isPresent() && result.get() == cancel) {
+        } else if (result.isPresent() && result.get() == cancel)
             System.out.println("Saving Settings Cancelled.");
-        }
     }
 
     @FXML
-    public void showNewItemDialog() {
+    private void handleFirefox() {
+        Runnable task;
+        saveOnlySettings();
+        task = () -> {
+            Firefox.destroyFirefox();
+            if (!Firefox.isOperates())
+                Firefox.createFirefox(mainUrl, outScreenFirefox.isSelected(), hiddenScreenFirefox.isSelected());
+        };
+        new Thread(task).start();
+    }
 
+    @FXML
+    private void handleSearchSpeed() {
+        saveOnlySettings();
+        if (veryfastSearchSpeed.isSelected()) Firefox.setSearchUpdateSpeed(1000);
+        else if (fastSearchSpeed.isSelected()) Firefox.setSearchUpdateSpeed(2000);
+        else if (regularSearchSpeed.isSelected()) Firefox.setSearchUpdateSpeed(3000);
+        else if (slowSearchSpeed.isSelected()) Firefox.setSearchUpdateSpeed(5000);
+        else if (verySlowSearchSpeed.isSelected()) Firefox.setSearchUpdateSpeed(10000);
+        else Firefox.setSearchUpdateSpeed(2000);
+    }
+
+    @FXML
+    private void handleImageSpeed() {
+        saveOnlySettings();
+        imageUpdateSpeed.setVisible(showImages.isSelected());
+        tableImage.setVisible(showImages.isSelected());
+        if (showImages.isSelected()) {
+            if (zeroImageSpeed.isSelected()) Firefox.setImageUpdateSpeed(0);
+            else if (veryfastImageSpeed.isSelected()) Firefox.setImageUpdateSpeed(1);
+            else if (fastImageSpeed.isSelected()) Firefox.setImageUpdateSpeed(2);
+            else if (regularImageSpeed.isSelected()) Firefox.setImageUpdateSpeed(5);
+            else if (slowImageSpeed.isSelected()) Firefox.setImageUpdateSpeed(20);
+            else if (verySlowImageSpeed.isSelected()) Firefox.setImageUpdateSpeed(100);
+            else Firefox.setImageUpdateSpeed(10);
+        }
+    }
+
+    //Stops Links
+    @FXML
+    private void handleStopLink() {
+        working = false;
+    }
+
+    @FXML
+    private void handleKeyboardEvent(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) handleCalculateLinks();
+        if (event.getCode() == KeyCode.ESCAPE) handleStopLink();
     }
 }

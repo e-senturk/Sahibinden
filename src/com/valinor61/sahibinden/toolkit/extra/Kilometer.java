@@ -6,7 +6,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 public class Kilometer implements Comparable<Kilometer>, NumberString {
-    int kmValue;
+    private final int kmValue;
 
     public Kilometer(int kmValue) {
         this.kmValue = kmValue;

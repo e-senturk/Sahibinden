@@ -9,7 +9,7 @@ import javafx.scene.control.TextArea;
 
 public class SettingsController {
     @FXML
-    TextArea mainPageInput, sourceCarInput, sourceLaptopInput, userAgentInput, unknownImageInput;
+    private TextArea mainPageInput, sourceCarInput, sourceLaptopInput, userAgentInput, unknownImageInput;
 
     public void initialize() {
         Settings reader = Settings.readActivationValues(null);
@@ -18,8 +18,8 @@ public class SettingsController {
         sourceLaptopInput.setText(reader.getLaptopSourceUrl());
         userAgentInput.setText(reader.getUserAgent());
         unknownImageInput.setText(reader.getStockLogo());
-    }
 
+    }
     @FXML
     public void processResult() {
         Firefox.setUserAgent(userAgentInput.getText());

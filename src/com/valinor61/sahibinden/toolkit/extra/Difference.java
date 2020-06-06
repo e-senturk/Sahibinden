@@ -3,8 +3,8 @@ package com.valinor61.sahibinden.toolkit.extra;
 import org.jetbrains.annotations.NotNull;
 
 public class Difference implements Comparable<Difference>, NumberString {
-    int diferenceValue;
-    int averageValue;
+    private final int diferenceValue;
+    private final int averageValue;
 
     public Difference(int diferenceValue, int averageValue) {
         this.diferenceValue = diferenceValue;

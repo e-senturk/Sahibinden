@@ -37,7 +37,7 @@ public class Settings {
     private final int searchSpeed;
     private final int imageSpeed;
     private final boolean hideAllItems;
-    String lastXDay;
+    private final String lastXDay;
 
     public Settings(ArrayList<Boolean> activationList, int[] ranges, String keyWord, String lastXDay, String mainUrl, String laptopSourceUrl, String carSourceUrl, String userAgent, String stockLogo, int firefoxMenu, boolean showImages, int searchSpeed, int imageSpeed, boolean hideAllItems) {
         this.activationList = activationList;
