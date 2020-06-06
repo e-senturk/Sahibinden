@@ -1,0 +1,95 @@
+Yakıt	benzin	21	a17
+Yakıt	benzin-lpg	50276	a17
+Yakıt	dizel	22	a17
+Yakıt	hybrid	274294	a17
+Yakıt	elektrik	1202111	a17
+Vites	manuel	32467	a6
+Vites	yari-otomatik	136309	a6
+Vites	otomatik	32466	a6
+Kasa Tipi	sedan	250	a8
+Kasa Tipi	cabrio	240	a8
+Kasa Tipi	coupe	48626	a8
+Kasa Tipi	hatchback-3-kapi	20	a8
+Kasa Tipi	hatchback-5-kapi	62068	a8
+Kasa Tipi	station-wagon	19	a8
+Kasa Tipi	crossover	1197464	a8
+Kasa Tipi	mpv	1197465	a8
+Kasa Tipi	roadster	1197466	a8
+Motor Gücü	126-150-hp	74346	a2320
+Motor Gücü	50-hp'ye-kadar	1096156	a2320
+Motor Gücü	51-75-hp	1096158	a2320
+Motor Gücü	76-100-hp	74344	a2320
+Motor Gücü	101-125-hp	74345	a2320
+Motor Gücü	151-175-hp	74347	a2320
+Motor Gücü	176-200-hp	74348	a2320
+Motor Gücü	201-225-hp	74349	a2320
+Motor Gücü	226-250-hp	74350	a2320
+Motor Gücü	251-275-hp	74351	a2320
+Motor Gücü	276-300-hp	74352	a2320
+Motor Gücü	301-325-hp	74353	a2320
+Motor Gücü	326-350-hp	74354	a2320
+Motor Gücü	351-375-hp	74355	a2320
+Motor Gücü	376-400-hp	74356	a2320
+Motor Gücü	401-425-hp	74357	a2320
+Motor Gücü	426-450-hp	74358	a2320
+Motor Gücü	451-475-hp	74359	a2320
+Motor Gücü	476-500-hp	74360	a2320
+Motor Gücü	501-525-hp	74361	a2320
+Motor Gücü	526-550-hp	74362	a2320
+Motor Gücü	551-575-hp	74363	a2320
+Motor Gücü	576-600-hp	74364	a2320
+Motor Gücü	601-hp-ve-uzeri	74365	a2320
+Motor Hacmi	2501-3000-cm3	51982	a1864
+Motor Hacmi	1300-cm3'-e-kadar	51977	a1864
+Motor Hacmi	1301-1600-cm3	1118042	a1864
+Motor Hacmi	1601-1800-cm3	51979	a1864
+Motor Hacmi	1801-2000-cm3	51980	a1864
+Motor Hacmi	2001-2500-cm3	51981	a1864
+Motor Hacmi	3001-3500-cm3	51983	a1864
+Motor Hacmi	3501-4000-cm3	51984	a1864
+Motor Hacmi	4001-4500-cm3	51985	a1864
+Motor Hacmi	4501-5000-cm3	74366	a1864
+Motor Hacmi	5001-5500-cm3	74367	a1864
+Motor Hacmi	5501-6000-cm3	74368	a1864
+Motor Hacmi	6001-cm3-ve-uzeri	74369	a1864
+Çekiş	onden-cekis	136269	a9213
+Çekiş	arkadan-itis	136270	a9213
+Çekiş	4wd-(surekli)	136271	a9213
+Çekiş	awd-(elektronik)	136272	a9213
+Renk	gri	33612	a3
+Renk	bej	655354	a3
+Renk	beyaz	33611	a3
+Renk	bordo	33617	a3
+Renk	fume	658878	a3
+Renk	gumus-gri	40948	a3
+Renk	kahverengi	33621	a3
+Renk	kirmizi	33613	a3
+Renk	lacivert	33615	a3
+Renk	mavi	33610	a3
+Renk	mor	33624	a3
+Renk	pembe	40167	a3
+Renk	sari	33614	a3
+Renk	siyah	33616	a3
+Renk	sampanya	675106	a3
+Renk	turkuaz	44926	a3
+Renk	turuncu	40148	a3
+Renk	yesil	33618	a3
+Garanti	evet	72906	a4054
+Garanti	hayir	72907	a4054
+Plaka / Uyruk	turkiye-(tr)-plakali	143038	a9620
+Plaka / Uyruk	yabanci-plakali	142777	a9620
+Plaka / Uyruk	mavi-(ma)-plakali	142778	a9620
+Kimden	sahibinden	32474	a706
+Kimden	galeriden	32475	a706
+Kimden	yetkili-bayiden	1160380	a706
+Görüntülü Arama İle Görülebilir	evet	1244988	a111579
+Görüntülü Arama İle Görülebilir	hayir	1244989	a111579
+Durumu	sifir	unused	condition
+Durumu	ikinci-el	used	condition
+Takaslı	evet	yes	exchange
+Takaslı	hayir	no	exchange
+İlan Tarihi	son-24-saat	1day	date
+İlan Tarihi	son-3-gun-icinde	3days	date
+İlan Tarihi	son-7-gun-icinde	7days	date
+İlan Tarihi	son-15-gun-icinde	15days	date
+İlan Tarihi	son-30-gun-icinde	30days	date

@@ -1,0 +1,103 @@
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view:focused {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(#101010 0%, #424141 100%);
+}
+
+.table-view .column-header-background .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: black;
+    -fx-alignment: CENTER-RIGHT;
+    -fx-font-size: 15;
+}
+
+.table-row-cell {
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell:odd {
+
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell:selected {
+    -fx-table-cell-border-color: white;
+    -fx-background-color: #D3FED4;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+
+.table-view .column-header#tableLocation .label {
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-view .table-cell#tableLocation {
+    -fx-alignment: CENTER_LEFT;
+}
+
+.label#logArea {
+    -fx-text-fill: red;
+}
+
+.accordion .titled-pane > *.content {
+    -fx-background-color: white;
+}
+
+.accordion .titled-pane .title {
+    -fx-background-color: transparent;
+}
+
+.check-box:selected > .box > .mark,
+.check-box:indeterminate > .box > .mark {
+    -fx-background-color: linear-gradient(#101010 0%, #424141 100%);
+}
+
+VBox#defaultSettings {
+    -fx-background-color: white;
+}
+
+.root {
+    -fx-base: lavender;
+    -fx-accent: #0096c9;
+    -fx-default-button: #abd8ed;
+    -fx-focus-color: #039ed3;
+    -fx-faint-focus-color: #039ed322;
+    -fx-focused-text-base-color: ladder(
+            -fx-selection-bar,
+            -fx-light-text-color 45%,
+            -fx-dark-text-color 46%,
+            -fx-dark-text-color 59%,
+            -fx-mid-text-color 60%
+    );
+    -fx-focused-mark-color: #010101 -fx-focused-text-base-color;
+
+}
+
+.menu-button > .arrow-button {
+    -fx-padding: 0;
+}
+
+.menu-button > .arrow-button > .arrow {
+    -fx-padding: 0;
+}
+
+.tooltip {
+    -fx-text-fill: #101010;
+    -fx-background-color: white;
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.valinor61.sahibinden.dialog.SettingsController"
+            prefHeight="300.0" prefWidth="600.0">
+    <headerText>
+
+    </headerText>
+    <content>
+        <GridPane vgap="10" hgap="10" prefHeight="900" prefWidth="900">
+            <Label text = "Ana Sayfa: " GridPane.rowIndex="0" GridPane.columnIndex="0" prefWidth="140"/>
+            <TextArea fx:id="mainPageInput" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" wrapText="true"/>
+            <Label text="Araba Veritabanı Linki:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextArea fx:id="sourceCarInput"  GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" wrapText="true"/>
+            <Label text="Laptop Veritabanı Linki: " GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextArea fx:id="sourceLaptopInput" GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" wrapText="true"/>
+            <Label text="User Agent Bilgisi: " GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextArea fx:id="userAgentInput" GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" wrapText="true"/>
+            <Label text="Okunamayan Resim Linki: " GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextArea fx:id="unknownImageInput" GridPane.rowIndex="4" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" wrapText="true"/>
+        </GridPane>
+    </content>
+</DialogPane>

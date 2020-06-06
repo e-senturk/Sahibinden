@@ -1,0 +1,223 @@
+İşlemci	amd	47533	a1722
+İşlemci	amd-a10	1135589	a1722
+İşlemci	amd-a12	1227461	a1722
+İşlemci	amd-a4	1135592	a1722
+İşlemci	amd-a6	1135591	a1722
+İşlemci	amd-a8	1135590	a1722
+İşlemci	amd-a9	1216665	a1722
+İşlemci	amd-athlon	47534	a1722
+İşlemci	amd-athlon-64	51403	a1722
+İşlemci	amd-athlon-64-x2	61779	a1722
+İşlemci	amd-athlon-64-x2-dual-core	1135489	a1722
+İşlemci	amd-athlon-ii-dual-core	1135490	a1722
+İşlemci	amd-athlon-ii-neo-dual-core	1135491	a1722
+İşlemci	amd-athlon-neo	239727	a1722
+İşlemci	amd-athlon-neo-x2-dual-core	1135492	a1722
+İşlemci	amd-athlon-x2-dual-core	1135493	a1722
+İşlemci	amd-athlon-xp	47535	a1722
+İşlemci	amd-duron	47536	a1722
+İşlemci	amd-e1	1135593	a1722
+İşlemci	amd-e2	1135594	a1722
+İşlemci	amd-k6	47537	a1722
+İşlemci	amd-k6-ii	47538	a1722
+İşlemci	amd-k6-iii	62186	a1722
+İşlemci	amd-k7	47539	a1722
+İşlemci	amd-phenom-ii-black-edition-dual-core	1135494	a1722
+İşlemci	amd-phenom-ii-black-edition-quad-core	1135495	a1722
+İşlemci	amd-phenom-ii-dual-core	1135498	a1722
+İşlemci	amd-phenom-ii-quad-core	1135496	a1722
+İşlemci	amd-phenom-ii-triple-core	1135497	a1722
+İşlemci	amd-ryzen	1211711	a1722
+İşlemci	amd-sempron	62185	a1722
+İşlemci	amd-thunderbird	47540	a1722
+İşlemci	amd-turion-64	62183	a1722
+İşlemci	amd-turion-64-x2	62184	a1722
+İşlemci	amd-turion-ii-dual-core	1135499	a1722
+İşlemci	amd-turion-ii-ultra-dual-core	1135500	a1722
+İşlemci	amd-turion-neo-x2-dual-core	1135501	a1722
+İşlemci	amd-turion-x2-dual-core	1135502	a1722
+İşlemci	amd-turion-x2-ultra-dual-core	1135503	a1722
+İşlemci	amd-v	1135504	a1722
+İşlemci	intel-atom	142767	a1722
+İşlemci	intel-celeron	47553	a1722
+İşlemci	intel-celeron-duo	62214	a1722
+İşlemci	intel-centrino	47567	a1722
+İşlemci	intel-centrino-dothan	51404	a1722
+İşlemci	intel-centrino-duo	62759	a1722
+İşlemci	intel-centrino-montevina	146081	a1722
+İşlemci	intel-centrino-sonoma	51402	a1722
+İşlemci	intel-core-2-duo	62606	a1722
+İşlemci	intel-core-2-extreme	249210	a1722
+İşlemci	intel-core-2-quad	62761	a1722
+İşlemci	intel-core-2-solo	145134	a1722
+İşlemci	intel-core-duo	59801	a1722
+İşlemci	intel-core-i3	273912	a1722
+İşlemci	intel-core-i3-(10.nesil)	1245552	a1722
+İşlemci	intel-core-i3-(2.nesil)	1119748	a1722
+İşlemci	intel-core-i3-(3.nesil)	1121604	a1722
+İşlemci	intel-core-i3-(4.nesil)	1137018	a1722
+İşlemci	intel-core-i3-(5.nesil)	1160201	a1722
+İşlemci	intel-core-i3-(6.nesil)	1180413	a1722
+İşlemci	intel-core-i3-(7.nesil)	1196707	a1722
+İşlemci	intel-core-i3-(8.nesil)	1202228	a1722
+İşlemci	intel-core-i3-(9.nesil)	1245551	a1722
+İşlemci	intel-core-i5	273914	a1722
+İşlemci	intel-core-i5-(10.nesil)	1241724	a1722
+İşlemci	intel-core-i5-(2.nesil)	1119750	a1722
+İşlemci	intel-core-i5-(3.nesil)	1121606	a1722
+İşlemci	intel-core-i5-(4.nesil)	1137019	a1722
+İşlemci	intel-core-i5-(5.nesil)	1160202	a1722
+İşlemci	intel-core-i5-(6.nesil)	1180414	a1722
+İşlemci	intel-core-i5-(7.nesil)	1196706	a1722
+İşlemci	intel-core-i5-(8.nesil)	1202229	a1722
+İşlemci	intel-core-i5-(9.nesil)	1238740	a1722
+İşlemci	intel-core-i7	249208	a1722
+İşlemci	intel-core-i7-(2.nesil)	1119752	a1722
+İşlemci	intel-core-i7-(3.nesil)	1121608	a1722
+İşlemci	intel-core-i7-(4.nesil)	1137020	a1722
+İşlemci	intel-core-i7-(5.nesil)	1160203	a1722
+İşlemci	intel-core-i7-(6.nesil)	1180415	a1722
+İşlemci	intel-core-i7-(7.nesil)	1196708	a1722
+İşlemci	intel-core-i7-(8.nesil)	1202230	a1722
+İşlemci	intel-core-i7-(9.nesil)	1238741	a1722
+İşlemci	intel-core-i7-(10.nesil)	1242122	a1722
+İşlemci	intel-core-i7-extreme	249209	a1722
+İşlemci	intel-core-i7-extreme-(2.nesil)	1121612	a1722
+İşlemci	intel-core-i7-extreme-(3.nesil)	1121610	a1722
+İşlemci	intel-core-i7-extreme-(4.nesil)	1137021	a1722
+İşlemci	intel-core-i9-(8.-nesil)	1216658	a1722
+İşlemci	intel-core-i9-(9.-nesil)	1234470	a1722
+İşlemci	intel-core-m	1180664	a1722
+İşlemci	intel-core-solo	59802	a1722
+İşlemci	intel-core-vpro	1202231	a1722
+İşlemci	intel-crusoe	47716	a1722
+İşlemci	intel-dual-core	62767	a1722
+İşlemci	intel-pentium-2117u	1197784	a1722
+İşlemci	intel-pentium-b9xx	1131184	a1722
+İşlemci	intel-pentium-ii	47530	a1722
+İşlemci	intel-pentium-iii	47531	a1722
+İşlemci	intel-pentium-iv	47532	a1722
+İşlemci	intel-pentium-m	61860	a1722
+İşlemci	intel-pentium-mmx	47529	a1722
+İşlemci	apple-g3	59956	a1722
+İşlemci	apple-g4	61835	a1722
+İşlemci	apple-g5	62605	a1722
+İşlemci	via	150769	a1722
+RAM	128-mb-alti	145034	a10539
+RAM	128-mb	145035	a10539
+RAM	256-mb	145036	a10539
+RAM	512-mb	145037	a10539
+RAM	1-gb	145038	a10539
+RAM	2-gb	145039	a10539
+RAM	3-gb	145040	a10539
+RAM	4-gb	145041	a10539
+RAM	6-gb	145042	a10539
+RAM	8-gb	145043	a10539
+RAM	10-gb	1216198	a10539
+RAM	12-gb	1077754	a10539
+RAM	16-gb	1077756	a10539
+RAM	24-gb	1193903	a10539
+RAM	32-gb	1116996	a10539
+RAM	64-gb	1216659	a10539
+Sabit Disk (HDD)	yok	145053	a10542
+Sabit Disk (HDD)	20-gb-ve-alti	145054	a10542
+Sabit Disk (HDD)	30-gb	145055	a10542
+Sabit Disk (HDD)	40-gb	145056	a10542
+Sabit Disk (HDD)	60-gb	145057	a10542
+Sabit Disk (HDD)	64-gb	829180	a10542
+Sabit Disk (HDD)	80-gb	145058	a10542
+Sabit Disk (HDD)	100-gb	145059	a10542
+Sabit Disk (HDD)	120-gb	145060	a10542
+Sabit Disk (HDD)	128-gb	829178	a10542
+Sabit Disk (HDD)	160-gb	145061	a10542
+Sabit Disk (HDD)	200-gb	145062	a10542
+Sabit Disk (HDD)	250-gb	145063	a10542
+Sabit Disk (HDD)	256-gb	829188	a10542
+Sabit Disk (HDD)	320-gb	145064	a10542
+Sabit Disk (HDD)	400-gb	145065	a10542
+Sabit Disk (HDD)	500-gb	145066	a10542
+Sabit Disk (HDD)	512-gb	1116998	a10542
+Sabit Disk (HDD)	640-gb	1103638	a10542
+Sabit Disk (HDD)	750-gb	145067	a10542
+Sabit Disk (HDD)	1-tb	145068	a10542
+Sabit Disk (HDD)	2-tb	1133006	a10542
+Sabit Disk (HDD)	3-tb-ve-ustu	1202156	a10542
+Sabit Disk (SSD)	yok	1214421	a107530
+Sabit Disk (SSD)	8-gb	1214409	a107530
+Sabit Disk (SSD)	16-gb	1214410	a107530
+Sabit Disk (SSD)	32-gb	1214412	a107530
+Sabit Disk (SSD)	64-gb	1214413	a107530
+Sabit Disk (SSD)	120-gb	1234217	a107530
+Sabit Disk (SSD)	128-gb	1214414	a107530
+Sabit Disk (SSD)	256-gb	1214415	a107530
+Sabit Disk (SSD)	360-gb	1225109	a107530
+Sabit Disk (SSD)	512-gb	1214419	a107530
+Sabit Disk (SSD)	1-tb	1214420	a107530
+Sabit Disk (SSD)	2-tb	1216897	a107530
+Sabit Disk (SSD)	4-tb	1216898	a107530
+Ekran Kartı	paylasimli	1147338	a10540
+Ekran Kartı	64-mb-ve-alti	145046	a10540
+Ekran Kartı	128-mb	145047	a10540
+Ekran Kartı	256-mb	145048	a10540
+Ekran Kartı	358-mb	145049	a10540
+Ekran Kartı	512-mb	145050	a10540
+Ekran Kartı	768-mb	145051	a10540
+Ekran Kartı	1-gb	145052	a10540
+Ekran Kartı	2-gb	1103640	a10540
+Ekran Kartı	3-gb	1077758	a10540
+Ekran Kartı	4-gb	1117000	a10540
+Ekran Kartı	6-gb	1137046	a10540
+Ekran Kartı	8-gb	1137047	a10540
+Ekran Kartı	12-gb	1151872	a10540
+Ekran Kartı	16-gb	1193904	a10540
+Ekran Boyutu	7-''	1232193	a10543
+Ekran Boyutu	8.9-''	145070	a10543
+Ekran Boyutu	10-''	145071	a10543
+Ekran Boyutu	10.1-''	145072	a10543
+Ekran Boyutu	10.2-''	145073	a10543
+Ekran Boyutu	10.6-''	145124	a10543
+Ekran Boyutu	11-''	1212432	a10543
+Ekran Boyutu	11.1-''	145074	a10543
+Ekran Boyutu	11.6-''	829182	a10543
+Ekran Boyutu	12-''	1212433	a10543
+Ekran Boyutu	12.1-''	145075	a10543
+Ekran Boyutu	12.5-''	1243724	a10543
+Ekran Boyutu	13-''	145111	a10543
+Ekran Boyutu	13.3-''	145076	a10543
+Ekran Boyutu	14-''	145077	a10543
+Ekran Boyutu	14.1-''	145078	a10543
+Ekran Boyutu	15-''	145104	a10543
+Ekran Boyutu	15.4-''	145079	a10543
+Ekran Boyutu	15.6-''	145080	a10543
+Ekran Boyutu	16-''	145081	a10543
+Ekran Boyutu	16.4-''	145082	a10543
+Ekran Boyutu	17-''	145083	a10543
+Ekran Boyutu	17.3-"	1118060	a10543
+Ekran Boyutu	18,4-''	145084	a10543
+Ekran Boyutu	20.1-''	145097	a10543
+Ekran Boyutu	24-''	145085	a10543
+Çözünürlük	1280-x-800	1213822	a107509
+Çözünürlük	1366-x-768	1213821	a107509
+Çözünürlük	1440-x-900	1213820	a107509
+Çözünürlük	1600-x-900	1213819	a107509
+Çözünürlük	1920-x-1080	1214055	a107509
+Çözünürlük	1920-x-1200	1213818	a107509
+Çözünürlük	2048-x-1536	1213817	a107509
+Çözünürlük	2160-x-1440	1213816	a107509
+Çözünürlük	2340-x-1440	1213815	a107509
+Çözünürlük	2560-x-1440	1213814	a107509
+Çözünürlük	2560-x-1600	1213813	a107509
+Çözünürlük	2880-x-1800	1213812	a107509
+Çözünürlük	3200-x-1800	1213811	a107509
+Çözünürlük	3840-x-2160	1213810	a107509
+Takaslı	evet	yes	exchange
+Takaslı	hayir	no	exchange
+Garanti	var	261562	a28342
+Garanti	yok	261563	a28342
+Kimden	sahibinden	38988	a587
+Kimden	magazadan	38989	a587
+İlan Tarihi	son-24-saat	1day	date
+İlan Tarihi	son-3-gun-icinde	3days	date
+İlan Tarihi	son-7-gun-icinde	7days	date
+İlan Tarihi	son-15-gun-icinde	15days	date
+İlan Tarihi	son-30-gun-icinde	30days	date
