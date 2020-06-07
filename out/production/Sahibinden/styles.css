@@ -67,7 +67,8 @@
 .check-box:indeterminate > .box > .mark {
     -fx-background-color: linear-gradient(#101010 0%, #424141 100%);
 }
-.text-area{
+
+.text-area {
     -fx-wrap-text: true;
 }
 

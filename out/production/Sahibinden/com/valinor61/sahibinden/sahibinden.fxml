@@ -40,7 +40,8 @@
                 </tooltip>
 
             </Button>
-            <Button alignment="CENTER" minWidth="35.0" mnemonicParsing="false" onAction="#handleStopLink" prefWidth="20.0"
+            <Button alignment="CENTER" minWidth="35.0" mnemonicParsing="false" onAction="#handleStopLink"
+                    prefWidth="20.0"
                     GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="0">
                 <graphic>
                     <ImageView fitWidth="20.0" preserveRatio="true">

@@ -1,5 +1,6 @@
 ##Sahibinden Fiyat Hesaplayıcı
 > Sahibinden.com Ortalama Fiyat Hesaplama ve Piyasa Analizi Programı
+
 ####Kurulum
 - Firefox Kurun ve firefoxun çalıştığına emin olun.
 - Programı açın açılan firefox penceresini kapatmayın
