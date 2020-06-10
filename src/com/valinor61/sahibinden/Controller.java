@@ -18,13 +18,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -52,9 +52,11 @@ public class Controller {
     @FXML
     private ToggleGroup groupFirefox, groupImage, groupSearch;
     @FXML
-    private ToggleButton filterToggle;
+    private ToggleButton filterButton;
     @FXML
-    private ImageView logoToggle;
+    private Button calculateButton, stopButton;
+    @FXML
+    private MenuButton menuButton;
     @FXML
     private Tooltip tooltipToggle;
     private LinkedList<TableList> localListTemp, fullListTemp;
@@ -173,6 +175,10 @@ public class Controller {
         handleFilterExtras();
         handleProcessorToggle();
         initializeTable();
+        initializeCarTable();
+        initializeIcons();
+
+
     }
 
     private void initializeTable() {
@@ -185,7 +191,7 @@ public class Controller {
         tableAverage.setCellValueFactory(new PropertyValueFactory<>("average"));
         tableDifference.setCellValueFactory(new PropertyValueFactory<>("difference"));
         initializeCarTable();
-        if (filterToggle.isSelected())
+        if (filterButton.isSelected())
             table.setItems(localList);
         else {
             table.setItems(finalList);
@@ -395,7 +401,7 @@ public class Controller {
                 if (finalList.isEmpty() || localList.isEmpty()) {
                     Platform.runLater(() -> tableInfo.setText("Sonuç Bulunamadı."));
                 }
-                if (filterToggle.isSelected() && !detail) {
+                if (filterButton.isSelected() && !detail) {
                     if (localList.isEmpty()) {
                         Platform.runLater(() -> countArea.setText("Eşleşme Yok."));
                     } else {
@@ -440,7 +446,7 @@ public class Controller {
 
     private void detailCalculate(String htmlContent) {
         detail = true;
-        filterToggle.setSelected(false);
+        filterButton.setSelected(false);
         handleFilterExtras();
         fullListTemp = new LinkedList<>();
         String info = Tools.getInfo(htmlContent);
@@ -574,12 +580,12 @@ public class Controller {
         ranges[1] = Tools.onlyNumbers(kmField.getText());
         ranges[2] = Tools.onlyNumbers(priceField.getText());
         boolean[] firefox = new boolean[]{visibleFirefox.isSelected(), outScreenFirefox.isSelected(), hiddenScreenFirefox.isSelected()};
-        Settings.writeActivationValues(activations, ranges, keyword.getText(), Tools.formatLastXEN(lastXDayValue.getSelectionModel().getSelectedItem()), firefox, getSystemSpeed(), getImageSpeed(), showImages.isSelected(), filterToggle.isSelected());
+        Settings.writeActivationValues(activations, ranges, keyword.getText(), Tools.formatLastXEN(lastXDayValue.getSelectionModel().getSelectedItem()), firefox, getSystemSpeed(), getImageSpeed(), showImages.isSelected(), filterButton.isSelected());
     }
 
     private void saveOnlySettings() {
         boolean[] firefox = new boolean[]{visibleFirefox.isSelected(), outScreenFirefox.isSelected(), hiddenScreenFirefox.isSelected()};
-        Settings.writeActivationValues(firefox, getSystemSpeed(), getImageSpeed(), showImages.isSelected(), filterToggle.isSelected());
+        Settings.writeActivationValues(firefox, getSystemSpeed(), getImageSpeed(), showImages.isSelected(), filterButton.isSelected());
     }
 
     @FXML
@@ -607,7 +613,7 @@ public class Controller {
         if (!isCorrectRead[0]) saveSettings();
         readSystemSpeed(readed.getSearchSpeed());
         readImageSpeed(readed.getImageSpeed(), readed.isShowImages());
-        filterToggle.setSelected(readed.isHideAllItems());
+        filterButton.setSelected(readed.isHideAllItems());
     }
 
     @FXML
@@ -664,16 +670,18 @@ public class Controller {
     @FXML
     private void handleFilterExtras() {
         saveOnlySettings();
-        if (filterToggle.isSelected() && !detail) {
+        if (filterButton.isSelected() && !detail) {
             table.setItems(localList);
-            logoToggle.setImage(new Image("showOF.png", 512, 512, false, false));
             tooltipToggle.setText("Tüm İlanları Göster");
+            filterButton.getStyleClass().clear();
+            filterButton.getStyleClass().add("icon-up");
             if (localList.isEmpty()) countArea.setText("");
             else countArea.setText(localList.size() + " Adet Eşleşme Bulundu.");
         } else {
             table.setItems(finalList);
-            logoToggle.setImage(new Image("showON.png", 512, 512, false, false));
             tooltipToggle.setText("Sadece Ana İlanları Göster");
+            filterButton.getStyleClass().clear();
+            filterButton.getStyleClass().add("icon-down");
             if (finalList.isEmpty()) countArea.setText("");
             else countArea.setText(finalList.size() + " Adet Eşleşme Bulundu.");
         }
@@ -777,4 +785,18 @@ public class Controller {
         if (event.getCode() == KeyCode.ENTER) handleCalculateLinks();
         if (event.getCode() == KeyCode.ESCAPE) handleStopLink();
     }
+
+    @FXML
+    private void initializeIcons() {
+        calculateButton.getStyleClass().add("icon-calculate");
+        calculateButton.setPickOnBounds(true);
+        stopButton.getStyleClass().add("icon-cancel");
+        stopButton.setPickOnBounds(true);
+        filterButton.getStyleClass().add("icon-down");
+        filterButton.setPickOnBounds(true);
+        menuButton.getStyleClass().add("icon-settings");
+        menuButton.setPickOnBounds(true);
+
+    }
+
 }

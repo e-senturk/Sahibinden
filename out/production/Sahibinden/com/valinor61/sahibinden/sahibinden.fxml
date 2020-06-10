@@ -2,200 +2,153 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" onKeyPressed="#handleKeyboardEvent" prefHeight="730.0"
-            prefWidth="1333.0" stylesheets="@/styles.css" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            fx:controller="com.valinor61.sahibinden.Controller">
+
+<BorderPane fx:id="mainPane" onKeyPressed="#handleKeyboardEvent" prefHeight="730.0" prefWidth="1333.0" stylesheets="@/styles.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.valinor61.sahibinden.Controller">
     <top>
         <GridPane prefWidth="1140.0">
-            <Label alignment="CENTER_RIGHT" text="URL :" GridPane.columnIndex="0" GridPane.hgrow="NEVER"
-                   GridPane.rowIndex="0">
+            <Label alignment="CENTER_RIGHT" text="URL :" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="0">
                 <opaqueInsets>
-                    <Insets/>
+                    <Insets />
                 </opaqueInsets>
                 <GridPane.margin>
-                    <Insets right="15.0"/>
+                    <Insets right="15.0" />
                 </GridPane.margin>
             </Label>
-            <TextField fx:id="urlField" minWidth="0.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER"
-                       GridPane.rowIndex="0">
+            <TextField fx:id="urlField" minWidth="0.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.rowIndex="0">
                 <GridPane.margin>
-                    <Insets right="5.0"/>
+                    <Insets right="4.0" />
                 </GridPane.margin>
             </TextField>
-            <Button alignment="CENTER" minWidth="35.0" mnemonicParsing="false" onAction="#handleCalculateLinks"
-                    prefWidth="20.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER"
-                    GridPane.rowIndex="0">
-                <graphic>
-                    <ImageView fitWidth="20.0" preserveRatio="true">
-                        <Image url="@/open.png"/>
-                    </ImageView>
-                </graphic>
+            <Button fx:id="calculateButton" alignment="CENTER" minWidth="24.0" mnemonicParsing="false" onAction="#handleCalculateLinks" prefWidth="24.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="0">
                 <GridPane.margin>
-                    <Insets left="5" right="2.5"/>
+                    <Insets left="4.0" right="4.0" />
                 </GridPane.margin>
                 <tooltip>
-                    <Tooltip text="Hesapla"/>
+                    <Tooltip text="Hesapla" />
                 </tooltip>
 
             </Button>
-            <Button alignment="CENTER" minWidth="35.0" mnemonicParsing="false" onAction="#handleStopLink"
-                    prefWidth="20.0"
-                    GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="0">
-                <graphic>
-                    <ImageView fitWidth="20.0" preserveRatio="true">
-                        <Image url="@/stop.png"/>
-                    </ImageView>
-                </graphic>
+            <Button fx:id="stopButton" alignment="CENTER" minWidth="24.0" mnemonicParsing="false" onAction="#handleStopLink" prefWidth="24.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="0">
                 <GridPane.margin>
-                    <Insets left="2.5" right="2.5"/>
+                    <Insets left="4.0" right="4.0" />
                 </GridPane.margin>
                 <tooltip>
-                    <Tooltip text="Durdur"/>
+                    <Tooltip text="Durdur" />
                 </tooltip>
             </Button>
-            <ToggleButton fx:id="filterToggle" minWidth="35.0" mnemonicParsing="false" onAction="#handleFilterExtras"
-                          prefWidth="20.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="NEVER"
-                          GridPane.rowIndex="0">
-                <graphic>
-                    <ImageView fx:id="logoToggle" fitWidth="20.0" preserveRatio="true">
-                        <Image url="@/showON.png"/>
-                    </ImageView>
-                </graphic>
+            <ToggleButton fx:id="filterButton" minWidth="24.0" mnemonicParsing="false" onAction="#handleFilterExtras" prefWidth="24.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="0">
                 <GridPane.margin>
-                    <Insets left="2.5" right="2.5"/>
+                    <Insets left="4.0" right="4.0" />
                 </GridPane.margin>
                 <tooltip>
-                    <Tooltip fx:id="tooltipToggle" text="Sadece Ana İlanları Göster"/>
+                    <Tooltip fx:id="tooltipToggle" text="Sadece Ana İlanları Göster" />
                 </tooltip>
 
             </ToggleButton>
-            <MenuButton alignment="CENTER" minWidth="35.0" mnemonicParsing="false" prefWidth="20.0"
-                        GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="NEVER"
-                        GridPane.rowIndex="0">
+            <MenuButton fx:id="menuButton" alignment="CENTER" minWidth="24.0" mnemonicParsing="false" prefWidth="24.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="0">
                 <items>
                     <Menu mnemonicParsing="false" text="Firefox Görünümü">
-                        <RadioMenuItem fx:id="visibleFirefox" mnemonicParsing="false" onAction="#handleFirefox"
-                                       text="Görünür Başlat">
+                        <RadioMenuItem fx:id="visibleFirefox" mnemonicParsing="false" onAction="#handleFirefox" text="Görünür Başlat">
                             <toggleGroup>
-                                <ToggleGroup fx:id="groupFirefox"/>
+                                <ToggleGroup fx:id="groupFirefox" />
                             </toggleGroup>
                         </RadioMenuItem>
-                        <RadioMenuItem fx:id="outScreenFirefox" mnemonicParsing="false" onAction="#handleFirefox"
-                                       text="Ekranın Dışında Başlat">
+                        <RadioMenuItem fx:id="outScreenFirefox" mnemonicParsing="false" onAction="#handleFirefox" text="Ekranın Dışında Başlat">
                             <toggleGroup>
-                                <fx:reference source="groupFirefox"/>
+                                <fx:reference source="groupFirefox" />
                             </toggleGroup>
                         </RadioMenuItem>
-                        <RadioMenuItem fx:id="hiddenScreenFirefox" mnemonicParsing="false" onAction="#handleFirefox"
-                                       text="Arkaplanda Başlat">
+                        <RadioMenuItem fx:id="hiddenScreenFirefox" mnemonicParsing="false" onAction="#handleFirefox" text="Arkaplanda Başlat">
                             <toggleGroup>
-                                <fx:reference source="groupFirefox"/>
+                                <fx:reference source="groupFirefox" />
                             </toggleGroup>
                         </RadioMenuItem>
                     </Menu>
                     <Menu fx:id="searchUpdateSpeed" mnemonicParsing="false" text="Sayfa Yükleme Hızı">
-                        <RadioMenuItem fx:id="veryfastSearchSpeed" mnemonicParsing="false" onAction="#handleSearchSpeed"
-                                       text="Çok Yüksek">
+                        <RadioMenuItem fx:id="veryfastSearchSpeed" mnemonicParsing="false" onAction="#handleSearchSpeed" text="Çok Yüksek">
                             <toggleGroup>
-                                <ToggleGroup fx:id="groupSearch"/>
+                                <ToggleGroup fx:id="groupSearch" />
                             </toggleGroup>
                         </RadioMenuItem>
-                        <RadioMenuItem fx:id="fastSearchSpeed" mnemonicParsing="false" onAction="#handleSearchSpeed"
-                                       text="Yüksek">
+                        <RadioMenuItem fx:id="fastSearchSpeed" mnemonicParsing="false" onAction="#handleSearchSpeed" text="Yüksek">
                             <toggleGroup>
-                                <fx:reference source="groupSearch"/>
+                                <fx:reference source="groupSearch" />
                             </toggleGroup>
                         </RadioMenuItem>
-                        <RadioMenuItem fx:id="regularSearchSpeed" mnemonicParsing="false" onAction="#handleSearchSpeed"
-                                       text="Normal">
+                        <RadioMenuItem fx:id="regularSearchSpeed" mnemonicParsing="false" onAction="#handleSearchSpeed" text="Normal">
                             <toggleGroup>
-                                <fx:reference source="groupSearch"/>
+                                <fx:reference source="groupSearch" />
                             </toggleGroup>
                         </RadioMenuItem>
-                        <RadioMenuItem fx:id="slowSearchSpeed" mnemonicParsing="false" onAction="#handleSearchSpeed"
-                                       text="Yavaş">
+                        <RadioMenuItem fx:id="slowSearchSpeed" mnemonicParsing="false" onAction="#handleSearchSpeed" text="Yavaş">
                             <toggleGroup>
-                                <fx:reference source="groupSearch"/>
+                                <fx:reference source="groupSearch" />
                             </toggleGroup>
                         </RadioMenuItem>
-                        <RadioMenuItem fx:id="verySlowSearchSpeed" mnemonicParsing="false" onAction="#handleSearchSpeed"
-                                       text="Çok Yavaş">
+                        <RadioMenuItem fx:id="verySlowSearchSpeed" mnemonicParsing="false" onAction="#handleSearchSpeed" text="Çok Yavaş">
                             <toggleGroup>
-                                <fx:reference source="groupSearch"/>
+                                <fx:reference source="groupSearch" />
                             </toggleGroup>
                         </RadioMenuItem>
                     </Menu>
-                    <RadioMenuItem fx:id="showImages" mnemonicParsing="false" onAction="#handleImageSpeed"
-                                   text="Resimleri Göster"/>
+                    <RadioMenuItem fx:id="showImages" mnemonicParsing="false" onAction="#handleImageSpeed" text="Resimleri Göster" />
                     <Menu fx:id="imageUpdateSpeed" mnemonicParsing="false" text="Resim Güncelleme Hızı" visible="false">
-                        <RadioMenuItem fx:id="zeroImageSpeed" mnemonicParsing="false" onAction="#handleImageSpeed"
-                                       text="Sınırsız">
+                        <RadioMenuItem fx:id="zeroImageSpeed" mnemonicParsing="false" onAction="#handleImageSpeed" text="Sınırsız">
                             <toggleGroup>
-                                <ToggleGroup fx:id="groupImage"/>
+                                <ToggleGroup fx:id="groupImage" />
                             </toggleGroup>
                         </RadioMenuItem>
-                        <RadioMenuItem fx:id="veryfastImageSpeed" mnemonicParsing="false" onAction="#handleImageSpeed"
-                                       text="Çok Yüksek">
+                        <RadioMenuItem fx:id="veryfastImageSpeed" mnemonicParsing="false" onAction="#handleImageSpeed" text="Çok Yüksek">
                             <toggleGroup>
-                                <fx:reference source="groupImage"/>
+                                <fx:reference source="groupImage" />
                             </toggleGroup>
                         </RadioMenuItem>
-                        <RadioMenuItem fx:id="fastImageSpeed" mnemonicParsing="false" onAction="#handleImageSpeed"
-                                       text="Yüksek">
+                        <RadioMenuItem fx:id="fastImageSpeed" mnemonicParsing="false" onAction="#handleImageSpeed" text="Yüksek">
                             <toggleGroup>
-                                <fx:reference source="groupImage"/>
+                                <fx:reference source="groupImage" />
                             </toggleGroup>
                         </RadioMenuItem>
-                        <RadioMenuItem fx:id="regularImageSpeed" mnemonicParsing="false" onAction="#handleImageSpeed"
-                                       text="Normal">
+                        <RadioMenuItem fx:id="regularImageSpeed" mnemonicParsing="false" onAction="#handleImageSpeed" text="Normal">
                             <toggleGroup>
-                                <fx:reference source="groupImage"/>
+                                <fx:reference source="groupImage" />
                             </toggleGroup>
                         </RadioMenuItem>
-                        <RadioMenuItem fx:id="slowImageSpeed" mnemonicParsing="false" onAction="#handleImageSpeed"
-                                       text="Yavaş">
+                        <RadioMenuItem fx:id="slowImageSpeed" mnemonicParsing="false" onAction="#handleImageSpeed" text="Yavaş">
                             <toggleGroup>
-                                <fx:reference source="groupImage"/>
+                                <fx:reference source="groupImage" />
                             </toggleGroup>
                         </RadioMenuItem>
-                        <RadioMenuItem fx:id="verySlowImageSpeed" mnemonicParsing="false" onAction="#handleImageSpeed"
-                                       text="Çok Yavaş">
+                        <RadioMenuItem fx:id="verySlowImageSpeed" mnemonicParsing="false" onAction="#handleImageSpeed" text="Çok Yavaş">
                             <toggleGroup>
-                                <fx:reference source="groupImage"/>
+                                <fx:reference source="groupImage" />
                             </toggleGroup>
                         </RadioMenuItem>
                     </Menu>
-                    <MenuItem mnemonicParsing="false" onAction="#handleAdvancedSettings" text="Gelişmiş Seçenekler"/>
+                    <MenuItem mnemonicParsing="false" onAction="#handleAdvancedSettings" text="Gelişmiş Seçenekler" />
 
 
                 </items>
-                <graphic>
-                    <ImageView fitWidth="20.0" preserveRatio="true">
-                        <Image url="@/menu.png"/>
-                    </ImageView>
-                </graphic>
                 <GridPane.margin>
-                    <Insets left="2.5"/>
+                    <Insets left="4.0" />
                 </GridPane.margin>
                 <tooltip>
-                    <Tooltip text="Ayarlar"/>
+                    <Tooltip text="Ayarlar" />
                 </tooltip>
             </MenuButton>
             <padding>
-                <Insets bottom="5.0" left="10" right="10" top="5.0"/>
+                <Insets bottom="5.0" left="10" right="10" top="5.0" />
             </padding>
             <columnConstraints>
-                <ColumnConstraints maxWidth="45.0" minWidth="45.0" prefWidth="45.0"/>
-                <ColumnConstraints hgrow="ALWAYS" minWidth="0.0"/>
-                <ColumnConstraints/>
-                <ColumnConstraints/>
-                <ColumnConstraints/>
-                <ColumnConstraints/>
+                <ColumnConstraints maxWidth="45.0" minWidth="45.0" prefWidth="45.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints/>
+                <RowConstraints />
             </rowConstraints>
         </GridPane>
     </top>
@@ -207,66 +160,61 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <VBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                 <padding>
-                                    <Insets bottom="10" left="10" right="10"
-                                            top="10"/>      <!--Üst tarafa istediğimiz miktarda boşluk ekler-->
+                                    <Insets bottom="10" left="10" right="10" top="10" />      <!--Üst tarafa istediğimiz miktarda boşluk ekler-->
                                 </padding>
                                 <opaqueInsets>
-                                    <Insets left="20.0"/>
+                                    <Insets left="20.0" />
                                 </opaqueInsets>
-                                <Label text="Arama Anahtarlarını Seçin:"/>
+                                <Label text="Arama Anahtarlarını Seçin:" />
                                 <VBox>
                                     <CheckBox fx:id="series" mnemonicParsing="false" text="Seri Arama">
                                         <VBox.margin>
-                                            <Insets top="5.0"/>
+                                            <Insets top="5.0" />
                                         </VBox.margin>
                                     </CheckBox>
-                                    <CheckBox fx:id="model" mnemonicParsing="false" text="Model Arama"/>
-                                    <CheckBox fx:id="fuel" mnemonicParsing="false" text="Yakıt Arama"/>
-                                    <CheckBox fx:id="gear" mnemonicParsing="false" text="Vites Arama"/>
+                                    <CheckBox fx:id="model" mnemonicParsing="false" text="Model Arama" />
+                                    <CheckBox fx:id="fuel" mnemonicParsing="false" text="Yakıt Arama" />
+                                    <CheckBox fx:id="gear" mnemonicParsing="false" text="Vites Arama" />
                                     <HBox>
                                         <VBox.margin>
-                                            <Insets bottom="5.0" top="5.0"/>
+                                            <Insets bottom="5.0" top="5.0" />
                                         </VBox.margin>
                                         <VBox>
-                                            <CheckBox fx:id="year" mnemonicParsing="false" onAction="#handleYearField"
-                                                      text="Yıl Aralığı">
+                                            <CheckBox fx:id="year" mnemonicParsing="false" onAction="#handleYearField" text="Yıl Aralığı">
                                                 <VBox.margin>
-                                                    <Insets top="5.0"/>
+                                                    <Insets top="5.0" />
                                                 </VBox.margin>
                                             </CheckBox>
-                                            <CheckBox fx:id="km" mnemonicParsing="false" onAction="#handleKMField"
-                                                      text="Km Aralığı">
+                                            <CheckBox fx:id="km" mnemonicParsing="false" onAction="#handleKMField" text="Km Aralığı">
                                                 <VBox.margin>
-                                                    <Insets top="10.0"/>
+                                                    <Insets top="10.0" />
                                                 </VBox.margin>
                                             </CheckBox>
 
                                         </VBox>
                                         <VBox>
                                             <HBox.margin>
-                                                <Insets left="10.0" top="1.0"/>
+                                                <Insets left="10.0" top="1.0" />
                                             </HBox.margin>
-                                            <TextField fx:id="yearField" alignment="CENTER_RIGHT" disable="true"
-                                                       prefHeight="26.0" prefWidth="75.0">
+                                            <TextField fx:id="yearField" alignment="CENTER_RIGHT" disable="true" prefHeight="26.0" prefWidth="75.0">
                                                 <VBox.margin>
-                                                    <Insets top="1.0"/>
+                                                    <Insets top="1.0" />
                                                 </VBox.margin>
                                             </TextField>
-                                            <TextField fx:id="kmField" alignment="CENTER_RIGHT" disable="true"
-                                                       prefHeight="26.0" prefWidth="75.0">
+                                            <TextField fx:id="kmField" alignment="CENTER_RIGHT" disable="true" prefHeight="26.0" prefWidth="75.0">
                                                 <VBox.margin>
-                                                    <Insets bottom="2.0" top="2.0"/>
+                                                    <Insets bottom="2.0" top="2.0" />
                                                 </VBox.margin>
                                             </TextField>
                                         </VBox>
                                     </HBox>
-                                    <CheckBox fx:id="plate" mnemonicParsing="false" text="Plaka Arama"/>
-                                    <CheckBox fx:id="power" mnemonicParsing="false" text="Çekiş Arama"/>
-                                    <CheckBox fx:id="color" mnemonicParsing="false" text="Renk Arama"/>
-                                    <CheckBox fx:id="chasis" mnemonicParsing="false" text="Kasa Arama"/>
-                                    <CheckBox fx:id="unpainted" mnemonicParsing="false" text="Boyasız Arama"/>
-                                    <CheckBox fx:id="engine" mnemonicParsing="false" text="Motor Hacmi Arama"/>
-                                    <CheckBox fx:id="horsePower" mnemonicParsing="false" text="Motor Gücü Arama"/>
+                                    <CheckBox fx:id="plate" mnemonicParsing="false" text="Plaka Arama" />
+                                    <CheckBox fx:id="power" mnemonicParsing="false" text="Çekiş Arama" />
+                                    <CheckBox fx:id="color" mnemonicParsing="false" text="Renk Arama" />
+                                    <CheckBox fx:id="chasis" mnemonicParsing="false" text="Kasa Arama" />
+                                    <CheckBox fx:id="unpainted" mnemonicParsing="false" text="Boyasız Arama" />
+                                    <CheckBox fx:id="engine" mnemonicParsing="false" text="Motor Hacmi Arama" />
+                                    <CheckBox fx:id="horsePower" mnemonicParsing="false" text="Motor Gücü Arama" />
                                 </VBox>
                             </VBox>
                         </AnchorPane>
@@ -274,247 +222,223 @@
                     <TitledPane text="Laptop Filtreleri">
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <VBox>
-                                <Label text="Arama Anahtarlarını Seçin:"/>
+                                <Label text="Arama Anahtarlarını Seçin:" />
                                 <CheckBox fx:id="brandLaptop" mnemonicParsing="false" text="Marka Arama">
                                     <VBox.margin>
-                                        <Insets top="5.0"/>
+                                        <Insets top="5.0" />
                                     </VBox.margin>
                                 </CheckBox>
-                                <CheckBox fx:id="processorLaptop" mnemonicParsing="false"
-                                          onAction="#handleProcessorToggle" text="İşlemci Arama"/>
-                                <CheckBox fx:id="brandProcessorLaptop" mnemonicParsing="false"
-                                          text="İşlemci Marka Arama">
+                                <CheckBox fx:id="processorLaptop" mnemonicParsing="false" onAction="#handleProcessorToggle" text="İşlemci Arama" />
+                                <CheckBox fx:id="brandProcessorLaptop" mnemonicParsing="false" text="İşlemci Marka Arama">
                                     <VBox.margin>
-                                        <Insets left="17.0" top="2.0"/>
+                                        <Insets left="17.0" top="2.0" />
                                     </VBox.margin>
                                 </CheckBox>
-                                <CheckBox fx:id="seriesProcessorLaptop" mnemonicParsing="false"
-                                          text="İşlemci Seri Arama">
+                                <CheckBox fx:id="seriesProcessorLaptop" mnemonicParsing="false" text="İşlemci Seri Arama">
                                     <VBox.margin>
-                                        <Insets left="17.0"/>
+                                        <Insets left="17.0" />
                                     </VBox.margin>
                                 </CheckBox>
-                                <CheckBox fx:id="generationProcessorLaptop" mnemonicParsing="false"
-                                          text="İşlemci Nesil Arama">
+                                <CheckBox fx:id="generationProcessorLaptop" mnemonicParsing="false" text="İşlemci Nesil Arama">
                                     <VBox.margin>
-                                        <Insets left="17.0"/>
+                                        <Insets left="17.0" />
                                     </VBox.margin>
                                 </CheckBox>
-                                <Label prefWidth="200"
-                                       text=" Not: İşlemci seçenekleri sadece aranılan ilanda belirtilmişse çalışır."
-                                       wrapText="true">
+                                <Label prefWidth="200" text=" Not: İşlemci seçenekleri sadece aranılan ilanda belirtilmişse çalışır." wrapText="true">
                                     <VBox.margin>
-                                        <Insets bottom="5.0" top="5.0"/>
+                                        <Insets bottom="5.0" top="5.0" />
                                     </VBox.margin>
                                 </Label>
-                                <CheckBox fx:id="ramLaptop" mnemonicParsing="false" text="Ram Arama"/>
-                                <CheckBox fx:id="hddLaptop" mnemonicParsing="false" text="HDD Arama"/>
-                                <CheckBox fx:id="ssdLaptop" mnemonicParsing="false" text="SSD Arama"/>
-                                <CheckBox fx:id="gpuLaptop" mnemonicParsing="false" text="Ekran Kartı Arama"/>
-                                <CheckBox fx:id="screenSizeLaptop" mnemonicParsing="false" text="Ekran Boyutu Arama"/>
-                                <CheckBox fx:id="screenResolutionLaptop" mnemonicParsing="false"
-                                          text="Ekran Çözünürlüğü Arama"/>
+                                <CheckBox fx:id="ramLaptop" mnemonicParsing="false" text="Ram Arama" />
+                                <CheckBox fx:id="hddLaptop" mnemonicParsing="false" text="HDD Arama" />
+                                <CheckBox fx:id="ssdLaptop" mnemonicParsing="false" text="SSD Arama" />
+                                <CheckBox fx:id="gpuLaptop" mnemonicParsing="false" text="Ekran Kartı Arama" />
+                                <CheckBox fx:id="screenSizeLaptop" mnemonicParsing="false" text="Ekran Boyutu Arama" />
+                                <CheckBox fx:id="screenResolutionLaptop" mnemonicParsing="false" text="Ekran Çözünürlüğü Arama" />
                                 <padding>
-                                    <Insets bottom="10" left="10" right="10"
-                                            top="10"/>      <!--Üst tarafa istediğimiz miktarda boşluk ekler-->
+                                    <Insets bottom="10" left="10" right="10" top="10" />      <!--Üst tarafa istediğimiz miktarda boşluk ekler-->
                                 </padding>
                             </VBox>
                         </AnchorPane>
                     </TitledPane>
                 </panes>
                 <BorderPane.margin>
-                    <Insets bottom="10.0"/>
+                    <Insets bottom="10.0" />
                 </BorderPane.margin>
             </Accordion>
             <VBox id="defaultSettings" GridPane.columnIndex="0" GridPane.rowIndex="1">
                 <HBox>
-                    <CheckBox fx:id="searchText" mnemonicParsing="false" onAction="#handleKeywordSearch"
-                              text="Kelime Ara">
+                    <CheckBox fx:id="searchText" mnemonicParsing="false" onAction="#handleKeywordSearch" text="Kelime Ara">
                         <HBox.margin>
-                            <Insets left="11.0"/>
+                            <Insets left="11.0" />
                         </HBox.margin>
                     </CheckBox>
                     <CheckBox fx:id="searchContext" disable="true" mnemonicParsing="false" text="İçerikte Ara">
                         <padding>
-                            <Insets left="10.0"/>
+                            <Insets left="10.0" />
                         </padding>
                     </CheckBox>
                     <VBox.margin>
-                        <Insets top="5.0"/>
+                        <Insets top="5.0" />
                     </VBox.margin>
                 </HBox>
                 <Label text="Aranacak Kelime">
                     <padding>
-                        <Insets left="50.0"/>
+                        <Insets left="50.0" />
                     </padding>
                     <VBox.margin>
-                        <Insets top="5.0"/>
+                        <Insets top="5.0" />
                     </VBox.margin>
                 </Label>
                 <TextField fx:id="keyword" disable="true">
                     <VBox.margin>
-                        <Insets left="10.0" right="10.0"/>
+                        <Insets left="10.0" right="10.0" />
                     </VBox.margin>
                 </TextField>
                 <CheckBox fx:id="status" mnemonicParsing="false" text="Durum Arama">
                     <VBox.margin>
-                        <Insets left="11.0" top="5.0"/>
+                        <Insets left="11.0" top="5.0" />
                     </VBox.margin>
                 </CheckBox>
                 <CheckBox fx:id="exchange" mnemonicParsing="false" text="Takas Arama">
                     <VBox.margin>
-                        <Insets left="11.0"/>
+                        <Insets left="11.0" />
                     </VBox.margin>
                 </CheckBox>
                 <CheckBox fx:id="warranty" mnemonicParsing="false" text="Garanti Arama">
                     <VBox.margin>
-                        <Insets left="11.0"/>
+                        <Insets left="11.0" />
                     </VBox.margin>
                 </CheckBox>
                 <HBox>
                     <VBox.margin>
-                        <Insets bottom="4.0" left="11.0" top="4.0"/>
+                        <Insets bottom="4.0" left="11.0" top="4.0" />
                     </VBox.margin>
                     <CheckBox fx:id="price" mnemonicParsing="false" onAction="#handlePriceField" text="Fiyat Aralığı">
                         <HBox.margin>
-                            <Insets right="3.0" top="3.0"/>
+                            <Insets right="3.0" top="3.0" />
                         </HBox.margin>
                     </CheckBox>
-                    <TextField fx:id="priceField" alignment="CENTER_RIGHT" disable="true" prefHeight="26.0"
-                               prefWidth="75.0"/>
+                    <TextField fx:id="priceField" alignment="CENTER_RIGHT" disable="true" prefHeight="26.0" prefWidth="75.0" />
                 </HBox>
                 <CheckBox fx:id="seller" mnemonicParsing="false" text="Kimden Arama">
                     <VBox.margin>
-                        <Insets left="11.0"/>
+                        <Insets left="11.0" />
                     </VBox.margin>
                 </CheckBox>
                 <CheckBox fx:id="newToOld" mnemonicParsing="false" text="Yeniden Eskiye Arama">
                     <VBox.margin>
-                        <Insets left="11.0"/>
+                        <Insets left="11.0" />
                     </VBox.margin>
                 </CheckBox>
                 <CheckBox fx:id="pageSize" mnemonicParsing="false" onAction="#handleLastXDay" text="50 İlana Bak">
                     <VBox.margin>
-                        <Insets left="11.0"/>
+                        <Insets left="11.0" />
                     </VBox.margin>
                 </CheckBox>
                 <HBox>
                     <CheckBox fx:id="lastXDay" mnemonicParsing="false" onAction="#handleLastXDay" text="İlan Tarihi">
                         <padding>
-                            <Insets top="7.0"/>
+                            <Insets top="7.0" />
                         </padding>
                         <HBox.margin>
-                            <Insets left="11.0"/>
+                            <Insets left="11.0" />
                         </HBox.margin>
                     </CheckBox>
                     <ComboBox fx:id="lastXDayValue" disable="true" prefHeight="26.0" prefWidth="102.0">
                         <HBox.margin>
-                            <Insets left="5.0" top="3.0"/>
+                            <Insets left="5.0" top="3.0" />
                         </HBox.margin>
                     </ComboBox>
                     <VBox.margin>
-                        <Insets bottom="5.0"/>
+                        <Insets bottom="5.0" />
                     </VBox.margin>
                 </HBox>
                 <GridPane.margin>
-                    <Insets/>
+                    <Insets />
                 </GridPane.margin>
             </VBox>
             <rowConstraints>
-                <RowConstraints prefHeight="450.0"/>
-                <RowConstraints/>
+                <RowConstraints prefHeight="450.0" />
+                <RowConstraints />
             </rowConstraints>
             <columnConstraints>
-                <ColumnConstraints/>
+                <ColumnConstraints />
             </columnConstraints>
             <BorderPane.margin>
-                <Insets bottom="10.0"/>
+                <Insets bottom="10.0" />
             </BorderPane.margin>
         </GridPane>
     </left>
     <bottom>
         <GridPane>
-            <Label text="Label"/>
-            <Button mnemonicParsing="false" onAction="#saveSettings" text="  Kaydet  " GridPane.columnIndex="0"
-                    GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
+            <Label text="Label" />
+            <Button mnemonicParsing="false" onAction="#saveSettings" text="  Kaydet  " GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
                 <HBox.margin>
-                    <Insets left="15.0" right="5.0"/>
+                    <Insets left="15.0" right="5.0" />
                 </HBox.margin>
                 <GridPane.margin>
-                    <Insets left="10.0"/>
+                    <Insets left="10.0" />
                 </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#readSettings" text="Geri Yükle" GridPane.columnIndex="1"
-                    GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
+            <Button mnemonicParsing="false" onAction="#readSettings" text="Geri Yükle" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
                 <HBox.margin>
-                    <Insets left="5.0" right="15.0"/>
+                    <Insets left="5.0" right="15.0" />
                 </HBox.margin>
                 <GridPane.margin>
-                    <Insets right="10.0"/>
+                    <Insets right="10.0" />
                 </GridPane.margin>
             </Button>
             <Label prefWidth="76.0" text="Sistem Bilgisi:" GridPane.columnIndex="2">
                 <GridPane.margin>
-                    <Insets left="50.0"/>
+                    <Insets left="50.0" />
                 </GridPane.margin>
             </Label>
-            <Label id="logArea" fx:id="logArea" alignment="TOP_LEFT" prefHeight="18.0" prefWidth="488.0"
-                   GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
+            <Label id="logArea" fx:id="logArea" alignment="TOP_LEFT" prefHeight="18.0" prefWidth="488.0" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
                 <GridPane.margin>
-                    <Insets left="5.0"/>
+                    <Insets left="5.0" />
                 </GridPane.margin>
             </Label>
-            <Label id="logArea" fx:id="countArea" alignment="TOP_RIGHT" prefHeight="18.0" prefWidth="488.0"
-                   GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
+            <Label id="logArea" fx:id="countArea" alignment="TOP_RIGHT" prefHeight="18.0" prefWidth="488.0" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
                 <GridPane.margin>
-                    <Insets right="20.0"/>
+                    <Insets right="20.0" />
                 </GridPane.margin>
                 <opaqueInsets>
-                    <Insets/>
+                    <Insets />
                 </opaqueInsets>
             </Label>
             <columnConstraints>
-                <ColumnConstraints halignment="CENTER" maxWidth="100.0" minWidth="100.0" prefWidth="100.0"/>
-                <ColumnConstraints halignment="CENTER" maxWidth="100.0" minWidth="100.0" prefWidth="100.0"/>
-                <ColumnConstraints halignment="RIGHT" maxWidth="140.0" minWidth="140.0" prefWidth="140.0"/>
-                <ColumnConstraints halignment="RIGHT" hgrow="NEVER"/>
-                <ColumnConstraints halignment="RIGHT" hgrow="NEVER"/>
+                <ColumnConstraints halignment="CENTER" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="RIGHT" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                <ColumnConstraints halignment="RIGHT" hgrow="NEVER" />
+                <ColumnConstraints halignment="RIGHT" hgrow="NEVER" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints/>
+                <RowConstraints />
             </rowConstraints>
             <padding>
-                <Insets bottom="5.0" top="5.0"/>
+                <Insets bottom="5.0" top="5.0" />
             </padding>
         </GridPane>
     </bottom>
     <center>
         <TableView fx:id="table" onMouseClicked="#handleTableClick">
             <placeholder>
-                <Label fx:id="tableInfo" text="Sonuçları Görmek İçin Arama Yapın"/>
+                <Label fx:id="tableInfo" text="Sonuçları Görmek İçin Arama Yapın" />
             </placeholder>
             <columns>
-                <TableColumn fx:id="tableImage" minWidth="124.0" prefWidth="124.0" style="-fx-alignment: center-left"
-                             text="Resim"/>
-                <TableColumn fx:id="tableModel" minWidth="125.0" prefWidth="75.0" style="-fx-alignment: center-left"
-                             text="Model"/>
-                <TableColumn fx:id="tableTitle" minWidth="75.0" prefWidth="75" style="-fx-alignment: center-left"
-                             text="Başlık"/>
-                <TableColumn fx:id="tableSpecs1" minWidth="75.0" prefWidth="75.0" style="-fx-alignment: center"
-                             text="Yıl"/>
-                <TableColumn fx:id="tableSpecs2" minWidth="75.0" prefWidth="75.0" style="-fx-alignment: center-right"
-                             text="Km"/>
-                <TableColumn fx:id="tableSpecs3" minWidth="75.0" prefWidth="75.0" style="-fx-alignment: center"
-                             text="Renk"/>
-                <TableColumn fx:id="tablePrice" minWidth="100.0" prefWidth="100.0" style="-fx-alignment: center-right"
-                             text="Fiyat"/>
-                <TableColumn fx:id="tableAverage" minWidth="100.0" prefWidth="100.0" style="-fx-alignment: center-right"
-                             text="Ortalama"/>
-                <TableColumn fx:id="tableDifference" minWidth="50.0" prefWidth="50.0"
-                             style="-fx-alignment: center-right" text="Fark"/>
-                <TableColumn fx:id="tablePostDate" minWidth="125.0" prefWidth="75.0" style="-fx-alignment: center"
-                             text="İlan Tarihi"/>
-                <TableColumn id="tableLocation" fx:id="tableLocation" prefWidth="Infinity" text="            Konum"/>
+                <TableColumn fx:id="tableImage" minWidth="124.0" prefWidth="124.0" style="-fx-alignment: center-left" text="Resim" />
+                <TableColumn fx:id="tableModel" minWidth="125.0" prefWidth="75.0" style="-fx-alignment: center-left" text="Model" />
+                <TableColumn fx:id="tableTitle" minWidth="75.0" prefWidth="75" style="-fx-alignment: center-left" text="Başlık" />
+                <TableColumn fx:id="tableSpecs1" minWidth="75.0" prefWidth="75.0" style="-fx-alignment: center" text="Yıl" />
+                <TableColumn fx:id="tableSpecs2" minWidth="75.0" prefWidth="75.0" style="-fx-alignment: center-right" text="Km" />
+                <TableColumn fx:id="tableSpecs3" minWidth="75.0" prefWidth="75.0" style="-fx-alignment: center" text="Renk" />
+                <TableColumn fx:id="tablePrice" minWidth="100.0" prefWidth="100.0" style="-fx-alignment: center-right" text="Fiyat" />
+                <TableColumn fx:id="tableAverage" minWidth="100.0" prefWidth="100.0" style="-fx-alignment: center-right" text="Ortalama" />
+                <TableColumn fx:id="tableDifference" minWidth="50.0" prefWidth="50.0" style="-fx-alignment: center-right" text="Fark" />
+                <TableColumn fx:id="tablePostDate" minWidth="125.0" prefWidth="75.0" style="-fx-alignment: center" text="İlan Tarihi" />
+                <TableColumn id="tableLocation" fx:id="tableLocation" prefWidth="Infinity" text="            Konum" />
             </columns>
         </TableView>
     </center>

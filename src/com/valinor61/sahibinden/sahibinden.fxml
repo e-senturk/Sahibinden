@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainPane" onKeyPressed="#handleKeyboardEvent" prefHeight="730.0"
             prefWidth="1333.0" stylesheets="@/styles.css" xmlns="http://javafx.com/javafx/10.0.2-internal"
@@ -21,57 +20,42 @@
             <TextField fx:id="urlField" minWidth="0.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER"
                        GridPane.rowIndex="0">
                 <GridPane.margin>
-                    <Insets right="5.0"/>
+                    <Insets right="4.0"/>
                 </GridPane.margin>
             </TextField>
-            <Button alignment="CENTER" minWidth="35.0" mnemonicParsing="false" onAction="#handleCalculateLinks"
-                    prefWidth="20.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER"
-                    GridPane.rowIndex="0">
-                <graphic>
-                    <ImageView fitWidth="20.0" preserveRatio="true">
-                        <Image url="@/open.png"/>
-                    </ImageView>
-                </graphic>
+            <Button fx:id="calculateButton" alignment="CENTER" minWidth="24.0" mnemonicParsing="false"
+                    onAction="#handleCalculateLinks" prefWidth="24.0" GridPane.columnIndex="2"
+                    GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="0">
                 <GridPane.margin>
-                    <Insets left="5" right="2.5"/>
+                    <Insets left="4.0" right="4.0"/>
                 </GridPane.margin>
                 <tooltip>
                     <Tooltip text="Hesapla"/>
                 </tooltip>
 
             </Button>
-            <Button alignment="CENTER" minWidth="35.0" mnemonicParsing="false" onAction="#handleStopLink"
-                    prefWidth="20.0"
-                    GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="0">
-                <graphic>
-                    <ImageView fitWidth="20.0" preserveRatio="true">
-                        <Image url="@/stop.png"/>
-                    </ImageView>
-                </graphic>
+            <Button fx:id="stopButton" alignment="CENTER" minWidth="24.0" mnemonicParsing="false"
+                    onAction="#handleStopLink" prefWidth="24.0" GridPane.columnIndex="3" GridPane.halignment="CENTER"
+                    GridPane.hgrow="NEVER" GridPane.rowIndex="0">
                 <GridPane.margin>
-                    <Insets left="2.5" right="2.5"/>
+                    <Insets left="4.0" right="4.0"/>
                 </GridPane.margin>
                 <tooltip>
                     <Tooltip text="Durdur"/>
                 </tooltip>
             </Button>
-            <ToggleButton fx:id="filterToggle" minWidth="35.0" mnemonicParsing="false" onAction="#handleFilterExtras"
-                          prefWidth="20.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="NEVER"
+            <ToggleButton fx:id="filterButton" minWidth="24.0" mnemonicParsing="false" onAction="#handleFilterExtras"
+                          prefWidth="24.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="NEVER"
                           GridPane.rowIndex="0">
-                <graphic>
-                    <ImageView fx:id="logoToggle" fitWidth="20.0" preserveRatio="true">
-                        <Image url="@/showON.png"/>
-                    </ImageView>
-                </graphic>
                 <GridPane.margin>
-                    <Insets left="2.5" right="2.5"/>
+                    <Insets left="4.0" right="4.0"/>
                 </GridPane.margin>
                 <tooltip>
                     <Tooltip fx:id="tooltipToggle" text="Sadece Ana İlanları Göster"/>
                 </tooltip>
 
             </ToggleButton>
-            <MenuButton alignment="CENTER" minWidth="35.0" mnemonicParsing="false" prefWidth="20.0"
+            <MenuButton fx:id="menuButton" alignment="CENTER" minWidth="24.0" mnemonicParsing="false" prefWidth="24.0"
                         GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="NEVER"
                         GridPane.rowIndex="0">
                 <items>
@@ -171,13 +155,8 @@
 
 
                 </items>
-                <graphic>
-                    <ImageView fitWidth="20.0" preserveRatio="true">
-                        <Image url="@/menu.png"/>
-                    </ImageView>
-                </graphic>
                 <GridPane.margin>
-                    <Insets left="2.5"/>
+                    <Insets left="4.0"/>
                 </GridPane.margin>
                 <tooltip>
                     <Tooltip text="Ayarlar"/>
