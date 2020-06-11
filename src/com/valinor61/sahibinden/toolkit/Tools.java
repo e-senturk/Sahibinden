@@ -1,32 +1,15 @@
 package com.valinor61.sahibinden.toolkit;
 
-import com.valinor61.sahibinden.car.Car;
-import com.valinor61.sahibinden.car.Laptop;
 import com.valinor61.sahibinden.data.DataBase;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.NumberFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Locale;
 
 public class Tools {
-    private static final String plateLookName = "Plaka / Uyruk";
-    private static final String horsePowerLookName = "Motor Gücü";
-    private static final String warrantyLookName = "Garanti";
-    private static final String engineLookName = "Motor Hacmi";
-    private static final String powerLookName = "Çekiş";
-    private static final String colorLookName = "Renk";
-    private static final String chasisLookName = "Kasa Tipi";
-    private static final String processorLaptopLookName = "İşlemci";
-    private static final String ramLaptopLookName = "RAM";
-    private static final String hddLaptopLookName = "Sabit Disk (HDD)";
-    private static final String ssdLaptopLookName = "Sabit Disk (SSD)";
-    private static final String gpuLaptopLookName = "Ekran Kartı";
-    private static final String screenSizeLaptopLookName = "Ekran Boyutu";
-    private static final String resolutionLaptopLookName = "Çözünürlük";
-    private static final String sellerLaptopLookName = "Kimden";
+
 
     //Tools sadece araçları içerir tools üzerinden nesne oluşturulamaz.
     private Tools() {
@@ -88,215 +71,7 @@ public class Tools {
     }
 
 
-    public static String calculateCarLink(Car car, LinkedList<DataBase> dataBases, ArrayList<Boolean> activationList, String keyWord, String lastXDays, int[] ranges) {
-
-        StringBuilder link = new StringBuilder();
-        link.append("https://www.sahibinden.com/");
-        //Marka Bölümü
-        link.append(car.getBrand());
-        //Seri ve Model Bölümü
-        if (activationList.get(0)) {
-            link.append("-").append(car.getSeries());
-            if (activationList.get(1)) {
-                link.append("-").append(car.getModel());
-            }
-        }
-        //Yakıt Bölümü Ekleme
-        if (activationList.get(2)) {
-            link.append("/").append(car.getFuel());
-        }
-        //Vites Bölümü
-        if (activationList.get(3)) {
-            link.append("/").append(car.getGear());
-        }
-        //Araç Durumu Bölümü
-        if (activationList.get(4)) {
-            link.append("/").append(car.getStatus());
-        }
-        //Kimden bölümü
-        if (activationList.get(5)) {
-            link.append("/").append(car.getSeller());
-        }
-        //İlk Parçanın Sonu
-        link.append("?");
-        StringBuilder first = new StringBuilder();
-        StringBuilder second = new StringBuilder();
-        StringBuilder third = new StringBuilder();
-        for (DataBase x : dataBases) {
-            first.append(findMatch(x, plateLookName, car.getPlate(), activationList.get(9), false));
-            first.append(findMatch(x, horsePowerLookName, car.getHorsePower(), activationList.get(30), false));
-            first.append(findMatch(x, warrantyLookName, car.getWarranty(), activationList.get(10), false));
-            second.append(findMatch(x, engineLookName, car.getEngine(), activationList.get(29), false));
-            second.append(findMatch(x, powerLookName, car.getPower(), activationList.get(11), false));
-            third.append(findMatch(x, colorLookName, car.getColor(), activationList.get(12), false));
-            third.append(findMatch(x, chasisLookName, car.getChasis(), activationList.get(13), false));
-        }
-        if (activationList.get(20)) {
-            link.append("pagingSize=50").append("&");
-        }
-        //Son kaç gün içinde yüklendiği bölümü
-        if (activationList.get(18)) {
-            link.append("date=").append(lastXDays).append("&");
-        }
-        //Yıl max bölümü
-        if (activationList.get(6)) {
-            int year = car.getYear(), yearMax;
-            yearMax = Math.min(ranges[0] + year, LocalDate.now().getYear());
-            link.append("a5_max=").append(yearMax).append("&");
-        }
-        //KM bölümü fixlenecek min km
-        if (activationList.get(7)) {
-            int kmMin = car.getKm() - ranges[1];
-            if (kmMin < 0) {
-                kmMin = 0;
-            }
-            link.append("a4_min=").append(kmMin).append("&");
-        }
-        //Fiyat bölümü fixlenecek min fiyat
-        if (activationList.get(8)) {
-            int priceMin = car.getPrice() - ranges[2];
-            if (priceMin < 0) {
-                priceMin = 0;
-            }
-            link.append("price_min=").append(priceMin).append("&");
-        }
-        link.append(first.toString());
-        if (activationList.get(19)) {
-            link.append("unpaintedParts=true").append("&");
-        }
-        //KM bölümü fixlenecek max km
-        if (activationList.get(7)) {
-            int kmMax = car.getKm() + ranges[1];
-            link.append("a4_max=").append(kmMax).append("&");
-        }
-        if (activationList.get(17)) {
-            link.append("sorting=date_desc").append("&");
-        }
-
-        //Yıl min için oluşturuldu
-        if (activationList.get(6)) {
-            int yearMin = car.getYear() - ranges[0];
-            if (yearMin < 0) {
-                yearMin = 0;
-            }
-            link.append("a5_min=").append(yearMin).append("&");
-        }
-        //İçerik ekleme bölümü
-        if (activationList.get(16)) {
-            link.append("query_desc=true").append("&");
-        }
-        link.append(second.toString());
-        //Kelime arama bölümü 1
-        if (activationList.get(15)) {
-            link.append("query_text_mf=").append(keyWord).append("&");
-        }
-        link.append(third.toString());
-        //Takas bölümü
-        if (activationList.get(14)) {
-            link.append("exchange=yes").append("&");
-        }
-        //Fiyat bölümü fixlenecek max fiyat
-        if (activationList.get(8)) {
-            int priceMax = car.getPrice() + ranges[2];
-            link.append("price_max=").append(priceMax).append("&");
-        }
-        //Kelime arama için 2. bölüm
-        if (activationList.get(15)) {
-            link.append("query_text=").append(keyWord).append("&");
-        }
-        //Son karakter silindi.
-        if (link.length() > 0) {
-            link.setLength(link.length() - 1);
-        }
-        return formatText(link.toString()).replace("unpaintedparts", "unpaintedParts").replace("pagingsize", "pagingSize");
-    }
-
-    public static String calculateLaptopLink(Laptop laptop, LinkedList<DataBase> dataBases, ArrayList<Boolean> activationList, String keyWord, String lastXDays, int[] ranges, boolean[] processorValues) {
-
-        StringBuilder link = new StringBuilder();
-        link.append("https://www.sahibinden.com/");
-        //Marka Bölümü
-        if (activationList.get(21)) {
-            if (laptop.getBrand().equals("")) {
-                link.append(laptop.getBrand()).append("diger-laptop");
-            } else {
-                link.append(laptop.getBrand()).append("-laptop");
-            }
-        } else {
-            link.append("laptop-bilgisayar");
-        }
-        if (activationList.get(4)) {
-            link.append("/").append(laptop.getStatus());
-        }
-        //İlk Parçanın Sonu
-        link.append("?");
-        if (activationList.get(20)) {
-            link.append("pagingSize=50").append("&");
-        }
-        //Son kaç gün içinde yüklendiği bölümü
-        if (activationList.get(18)) {
-            link.append("date=").append(lastXDays).append("&");
-        }
-
-        StringBuilder first = new StringBuilder();
-        StringBuilder second = new StringBuilder();
-        StringBuilder third = new StringBuilder();
-        String moddedProcessor = Tools.modeProcessor(laptop.getProcessor(), processorValues);
-        for (DataBase x : dataBases) {
-            first.append(findMatch(x, ssdLaptopLookName, laptop.getSsd(), activationList.get(25), true));
-            first.append(findMatch(x, processorLaptopLookName, moddedProcessor, activationList.get(22), false));
-            first.append(findMatch(x, warrantyLookName, laptop.getWarranty(), activationList.get(10), false));
-            second.append(findMatch(x, ramLaptopLookName, laptop.getRam(), activationList.get(23), true));
-            third.append(findMatch(x, screenSizeLaptopLookName, laptop.getScreenSize(), activationList.get(27), false));
-            third.append(findMatch(x, hddLaptopLookName, laptop.getHdd(), activationList.get(24), true));
-            third.append(findMatch(x, gpuLaptopLookName, laptop.getGpu(), activationList.get(26), true));
-            third.append(findMatch(x, resolutionLaptopLookName, laptop.getResolution(), activationList.get(28), false));
-            second.append(findMatch(x, sellerLaptopLookName, laptop.getSeller(), activationList.get(5), false));
-
-        }
-        link.append(first.toString());
-        //Kelime arama bölümü 1
-        //Fiyat bölümü fixlenecek min fiyat
-        if (activationList.get(8)) {
-            int priceMin = laptop.getPrice() - ranges[2];
-            if (priceMin < 0) {
-                priceMin = 0;
-            }
-            link.append("price_min=").append(priceMin).append("&");
-        }
-        if (activationList.get(15)) {
-            link.append("query_text_mf=").append(keyWord).append("&");
-        }
-        link.append(second.toString());
-        if (activationList.get(17)) {
-            link.append("sorting=date_desc").append("&");
-        }
-        //İçerik ekleme bölümü
-        if (activationList.get(16)) {
-            link.append("query_desc=true").append("&");
-        }
-        //Takas bölümü
-        if (activationList.get(14)) {
-            link.append("exchange=yes").append("&");
-        }
-        link.append(third.toString());
-        //Fiyat bölümü fixlenecek max fiyat
-        if (activationList.get(8)) {
-            int priceMax = laptop.getPrice() + ranges[2];
-            link.append("price_max=").append(priceMax).append("&");
-        }
-        //Kelime arama için 2. bölüm
-        if (activationList.get(15)) {
-            link.append("query_text=").append(keyWord).append("&");
-        }
-        //Son karakter silindi.
-        if (link.length() > 0) {
-            link.setLength(link.length() - 1);
-        }
-        return formatText(link.toString()).replace("pagingsize", "pagingSize");
-    }
-
-    private static String modeProcessor(String processorName, boolean[] value) {
+    public static String modeProcessor(String processorName, boolean[] value) {
         StringBuilder processor = new StringBuilder();
         String brand = "", series = "", model = "";
         if (value[0] && value[1] && value[2]) {
@@ -341,7 +116,7 @@ public class Tools {
     }
 
 
-    private static String findMatch(DataBase data, String titleFind, String textFind, boolean enabled, boolean identical) {
+    public static String findMatch(DataBase data, String titleFind, String textFind, boolean enabled, boolean identical) {
         if (!enabled) {
             return "";
         }
@@ -453,7 +228,7 @@ public class Tools {
         } else return text;
     }
 
-    private static ArrayList<Integer> findNumbers(String text) {
+    public static ArrayList<Integer> findNumbers(String text) {
         ArrayList<Integer> numbers = new ArrayList<>(5);
         String[] list = text.split(" ");
         for (String x : list) {

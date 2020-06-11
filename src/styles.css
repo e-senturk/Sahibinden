@@ -17,6 +17,12 @@
 
 .table-view .column-header {
     -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-width: 0.5;
+}
+
+.table-view .column-header#tableLocation .label {
+    -fx-alignment: CENTER_LEFT;
 }
 
 .table-view .table-cell {
@@ -42,9 +48,6 @@
     -fx-background-radius: 1;
 }
 
-.table-view .column-header#tableLocation .label {
-    -fx-alignment: CENTER_LEFT;
-}
 
 .table-view .table-cell#tableLocation {
     -fx-alignment: CENTER_LEFT;
@@ -53,6 +56,7 @@
 .label#logArea {
     -fx-text-fill: red;
 }
+
 
 .accordion .titled-pane > *.content {
     -fx-background-color: white;
@@ -77,6 +81,7 @@ VBox#defaultSettings {
 
 .root {
     -fx-base: lavender;
+    -fx-font-size: 12px;
     -fx-accent: #0096c9;
     -fx-default-button: #abd8ed;
     -fx-focus-color: #039ed3;
@@ -131,7 +136,6 @@ VBox#defaultSettings {
     -icon-paint: black;
     -fx-background-color: -icon-paint;
     -size: 24px;
-
     -fx-min-height: -size;
     -fx-min-width: -size;
     -fx-max-height: -size;
@@ -155,7 +159,6 @@ VBox#defaultSettings {
     -icon-paint: black;
     -fx-background-color: -icon-paint;
     -size: 24px;
-
     -fx-min-height: -size;
     -fx-min-width: -size;
     -fx-max-height: -size;

@@ -5,10 +5,16 @@ import org.jetbrains.annotations.NotNull;
 public class Difference implements Comparable<Difference>, NumberString {
     private final int diferenceValue;
     private final int averageValue;
+    private final int differenceRatio;
 
     public Difference(int diferenceValue, int averageValue) {
         this.diferenceValue = diferenceValue;
         this.averageValue = averageValue;
+        if (averageValue == 0) {
+            this.differenceRatio = 0;
+        } else {
+            this.differenceRatio = diferenceValue * 100 / averageValue;
+        }
     }
 
     @Override
@@ -27,12 +33,12 @@ public class Difference implements Comparable<Difference>, NumberString {
             return "% " + t + x;
         } catch (ArithmeticException e) {
             System.out.println("Sıfıra bölme");
-            return "% 0";
+            return "% 00";
         }
     }
 
     @Override
     public int compareTo(@NotNull Difference o) {
-        return Integer.compare(this.diferenceValue, o.diferenceValue);
+        return Integer.compare(this.differenceRatio, o.differenceRatio);
     }
 }

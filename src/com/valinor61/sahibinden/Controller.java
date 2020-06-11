@@ -176,6 +176,7 @@ public class Controller {
         handleProcessorToggle();
         initializeTable();
         initializeCarTable();
+        initializeTextFieldNumberOnly();
         initializeIcons();
 
 
@@ -200,28 +201,45 @@ public class Controller {
 
     private void initializeCarTable() {
         tableModel.setText("Model");
+        tableModel.setMinWidth(125);
+        tableModel.setPrefWidth(125);
         tableSpecs1.setCellValueFactory(new PropertyValueFactory<>("year"));
         tableSpecs1.setText("Yıl");
         tableSpecs1.setMinWidth(75);
+        tableSpecs1.setPrefWidth(75);
+
         tableSpecs2.setCellValueFactory(new PropertyValueFactory<>("km"));
         tableSpecs2.setText("Km");
-        tableSpecs1.setPrefWidth(75);
+        tableSpecs2.setMinWidth(75);
+        tableSpecs2.setPrefWidth(75);
+
+
         tableSpecs3.setCellValueFactory(new PropertyValueFactory<>("color"));
         tableSpecs3.setText("Renk");
-        tableSpecs1.setPrefWidth(75);
+        tableSpecs3.setMinWidth(75);
+        tableSpecs3.setPrefWidth(75);
+
     }
 
     private void initializeLaptopTable() {
         tableModel.setText("Marka");
+        tableModel.setMinWidth(90);
+        tableModel.setPrefWidth(90);
         tableSpecs1.setCellValueFactory(new PropertyValueFactory<>("processor"));
         tableSpecs1.setText("İşlemci");
         tableSpecs1.setMinWidth(100);
+        tableSpecs1.setPrefWidth(100);
+
         tableSpecs2.setCellValueFactory(new PropertyValueFactory<>("ram"));
         tableSpecs2.setText("Ram");
+        tableSpecs2.setMinWidth(60);
         tableSpecs2.setPrefWidth(60);
+
         tableSpecs3.setCellValueFactory(new PropertyValueFactory<>("screenSize"));
         tableSpecs3.setText("Ekran Boyutu");
+        tableSpecs3.setMinWidth(100);
         tableSpecs3.setPrefWidth(100);
+
     }
 
     //Updates datebase files
@@ -314,6 +332,7 @@ public class Controller {
     //Calculation function
     @FXML
     private void handleCalculateLinks() {
+        working = true;
         countArea.setText("");
         //Reading year, km and price boxes
         readRangeValues();
@@ -392,6 +411,12 @@ public class Controller {
                         x.updateImage();
                     }
                 }
+                //Update local list element if there is no calculated average.
+                for (TableList x : localListTemp) {
+                    if (x.getAverageValue() == 0) {
+                        x.setAverage(x.getPrice().getPriceValue());
+                    }
+                }
                 //Set all items for display
                 finalList.setAll(temp);
                 localList.setAll(localListTemp);
@@ -453,7 +478,7 @@ public class Controller {
         if (info.contains("vasita")) {
             Car newCar = Car.generateCar(htmlContent);
             Platform.runLater(() -> logArea.setText("Araç Kategorisi: Detay Linki Girildi."));
-            String newLink = Tools.calculateCarLink(newCar, dataBaseCar, getActivationArray(), keyword.getText(), Tools.formatLastXEN(lastXDayValue.getSelectionModel().getSelectedItem()), ranges);
+            String newLink = CarList.calculateCarLink(newCar, dataBaseCar, getActivationArray(), keyword.getText(), Tools.formatLastXEN(lastXDayValue.getSelectionModel().getSelectedItem()), ranges);
             if (working)
                 Firefox.updateUrl(newLink, true);
             fullListTemp = CarList.generateLinkList(Firefox.getHtmlInformation(), info, getActivationArray());
@@ -461,7 +486,7 @@ public class Controller {
         } else if (info.contains("bilgisayar") && info.contains("Laptop")) {
             Laptop newLaptop = Laptop.generateLaptop(htmlContent);
             Platform.runLater(() -> logArea.setText("Laptop Kategorisi: Detay Linki Girildi."));
-            String newLink = Tools.calculateLaptopLink(newLaptop, dataBaseLaptop, getActivationArray(), keyword.getText(), Tools.formatLastXEN(lastXDayValue.getSelectionModel().getSelectedItem()), ranges, processorValues);
+            String newLink = LaptopList.calculateLaptopLink(newLaptop, dataBaseLaptop, getActivationArray(), keyword.getText(), Tools.formatLastXEN(lastXDayValue.getSelectionModel().getSelectedItem()), ranges, processorValues);
             if (working)
                 Firefox.updateUrl(newLink, true);
             fullListTemp = LaptopList.generateLinkList(Firefox.getHtmlInformation(), info, getActivationArray());
@@ -497,7 +522,7 @@ public class Controller {
                     }
                     if (info.contains("otomobil")) {
                         Car newCar = Car.generateCar(htmlContent);
-                        String newLink = Tools.calculateCarLink(newCar, dataBaseCar, getActivationArray(), keyword.getText(), Tools.formatLastXEN(lastXDayValue.getSelectionModel().getSelectedItem()), ranges);
+                        String newLink = CarList.calculateCarLink(newCar, dataBaseCar, getActivationArray(), keyword.getText(), Tools.formatLastXEN(lastXDayValue.getSelectionModel().getSelectedItem()), ranges);
                         Platform.runLater(() -> logArea.setText(percentage2 + " - " + k + ". Araç İçin Ortalama Fiyat Hesaplanıyor."));
                         if (Firefox.isOperates()) {
                             Firefox.updateUrl(newLink, true);
@@ -540,7 +565,7 @@ public class Controller {
                     info = Tools.getInfo(htmlContent);
                     if (info.contains("notebook") && info.contains("Laptop")) {
                         Laptop newLaptop = Laptop.generateLaptop(htmlContent);
-                        String newLink = Tools.calculateLaptopLink(newLaptop, dataBaseLaptop, getActivationArray(), keyword.getText(), Tools.formatLastXEN(lastXDayValue.getSelectionModel().getSelectedItem()), ranges, processorValues);
+                        String newLink = LaptopList.calculateLaptopLink(newLaptop, dataBaseLaptop, getActivationArray(), keyword.getText(), Tools.formatLastXEN(lastXDayValue.getSelectionModel().getSelectedItem()), ranges, processorValues);
                         Platform.runLater(() -> logArea.setText(percentage2 + " - " + k + ". Laptop İçin Ortalama Fiyat Hesaplanıyor."));
                         if (Firefox.isOperates()) {
                             Firefox.updateUrl(newLink, true);
@@ -797,6 +822,20 @@ public class Controller {
         menuButton.getStyleClass().add("icon-settings");
         menuButton.setPickOnBounds(true);
 
+    }
+
+    private void textFieldOnlyNumbers(TextField x) {
+        x.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                x.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
+    }
+
+    private void initializeTextFieldNumberOnly() {
+        textFieldOnlyNumbers(yearField);
+        textFieldOnlyNumbers(kmField);
+        textFieldOnlyNumbers(priceField);
     }
 
 }

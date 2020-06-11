@@ -47,7 +47,7 @@ public class TableList {
             this.dateYear = "Bulunamadı";
             this.dateFull = "Bulunamadı";
         }
-        this.location = location.replace("<br>", "/");
+        this.location = location.replace("<br>", "\n");
         this.average = new Price(0);
         this.difference = new Difference(1, 1);
 
@@ -137,6 +137,10 @@ public class TableList {
 
     public String getAverage() {
         return Tools.formatToTl(average.getPriceValue());
+    }
+
+    public int getAverageValue() {
+        return average.getPriceValue();
     }
 
     public void setAverage(int average) {
