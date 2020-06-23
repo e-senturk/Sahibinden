@@ -836,6 +836,10 @@ public class Controller {
         textFieldOnlyNumbers(yearField);
         textFieldOnlyNumbers(kmField);
         textFieldOnlyNumbers(priceField);
+        yearField.setContextMenu(new ContextMenu());
+        kmField.setContextMenu(new ContextMenu());
+        priceField.setContextMenu(new ContextMenu());
+
     }
 
 }

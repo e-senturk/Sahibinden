@@ -101,6 +101,7 @@ public class CarList extends TableList {
         return model;
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static String calculateCarLink(Car car, LinkedList<DataBase> dataBases, ArrayList<Boolean> activationList, String keyWord, String lastXDays, int[] ranges) {
 
         StringBuilder link = new StringBuilder();
@@ -248,7 +249,7 @@ public class CarList extends TableList {
 
     @FXML
     public String getColor() {
-        return color;
+        return color.replace(" ", "\n");
     }
 
     @Override

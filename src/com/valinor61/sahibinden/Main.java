@@ -18,9 +18,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sahibinden.fxml"));
         primaryStage.setTitle("Sahibinden.com Fiyat Hesaplayıcı");
-        primaryStage.setScene(new Scene(root, 1285, 685));
-        primaryStage.setMinWidth(400);
-        primaryStage.setMinHeight(400);
+        primaryStage.setScene(new Scene(root, 1255, 685));
+        primaryStage.setMinWidth(420);
+        primaryStage.setMinHeight(420);
         primaryStage.show();
         primaryStage.getIcons().add(new Image("logo.png"));
     }

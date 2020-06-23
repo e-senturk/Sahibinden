@@ -153,7 +153,7 @@
         </GridPane>
     </top>
     <left>
-        <GridPane>
+        <GridPane id="leftPane">
             <Accordion fx:id="accordion" GridPane.columnIndex="0" GridPane.rowIndex="0">
                 <panes>
                     <TitledPane fx:id="carPanel" text="Araba Filtreleri">
@@ -266,7 +266,7 @@
                     <Insets bottom="10.0" />
                 </BorderPane.margin>
             </Accordion>
-            <VBox id="defaultSettings" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <VBox id="generalSettings" GridPane.columnIndex="0" GridPane.rowIndex="1">
                 <HBox>
                     <CheckBox fx:id="searchText" mnemonicParsing="false" onAction="#handleKeywordSearch" text="Kelime Ara">
                         <HBox.margin>
@@ -320,9 +320,10 @@
                         </HBox.margin>
                     </CheckBox>
                     <TextField fx:id="priceField" alignment="CENTER_RIGHT" disable="true" prefHeight="26.0" prefWidth="50.0">
-                  <HBox.margin>
-                     <Insets left="5.0" right="7.5" />
-                  </HBox.margin></TextField>
+                        <HBox.margin>
+                            <Insets left="5.0" right="7.5" />
+                        </HBox.margin>
+                    </TextField>
                 </HBox>
                 <CheckBox fx:id="seller" mnemonicParsing="false" text="Kimden Arama">
                     <VBox.margin>
@@ -358,7 +359,7 @@
                     </VBox.margin>
                 </HBox>
                 <GridPane.margin>
-                    <Insets />
+                    <Insets bottom="10.0" />
                 </GridPane.margin>
             </VBox>
             <rowConstraints>
@@ -369,29 +370,23 @@
                 <ColumnConstraints />
             </columnConstraints>
             <BorderPane.margin>
-                <Insets bottom="10.0" />
+                <Insets top="1.1" />
             </BorderPane.margin>
         </GridPane>
     </left>
     <bottom>
         <GridPane>
             <Label text="Label" />
-            <Button mnemonicParsing="false" onAction="#saveSettings" text="  Kaydet  " GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
-                <HBox.margin>
-                    <Insets left="15.0" right="5.0" />
-                </HBox.margin>
-                <GridPane.margin>
-                    <Insets left="10.0" />
-                </GridPane.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#readSettings" text="Geri Yükle" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
-                <HBox.margin>
-                    <Insets left="5.0" right="15.0" />
-                </HBox.margin>
-                <GridPane.margin>
-                    <Insets right="10.0" />
-                </GridPane.margin>
-            </Button>
+         <HBox prefWidth="214.0" GridPane.columnSpan="2">
+                  <Button mnemonicParsing="false" onAction="#saveSettings" text="  Kaydet  ">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="25.0" right="7.5" top="5.0" />
+               </HBox.margin></Button>
+                  <Button mnemonicParsing="false" onAction="#readSettings" text="Geri Yükle">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="10.0" right="7.5" top="5.0" />
+               </HBox.margin></Button>
+         </HBox>
             <Label prefWidth="76.0" text="Sistem Bilgisi:" GridPane.columnIndex="2">
                 <GridPane.margin>
                     <Insets left="50.0" />
@@ -412,7 +407,7 @@
             </Label>
             <columnConstraints>
                 <ColumnConstraints halignment="CENTER" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
-                <ColumnConstraints halignment="CENTER" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" maxWidth="105.0" minWidth="105.0" prefWidth="105.0" />
                 <ColumnConstraints halignment="RIGHT" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
                 <ColumnConstraints halignment="RIGHT" hgrow="NEVER" />
                 <ColumnConstraints halignment="RIGHT" hgrow="NEVER" />
@@ -420,29 +415,31 @@
             <rowConstraints>
                 <RowConstraints />
             </rowConstraints>
-            <padding>
-                <Insets bottom="5.0" top="5.0" />
-            </padding>
         </GridPane>
     </bottom>
     <center>
-        <TableView fx:id="table" onMouseClicked="#handleTableClick">
-            <placeholder>
-                <Label fx:id="tableInfo" text="Sonuçları Görmek İçin Arama Yapın"/>
-            </placeholder>
-            <columns>
-                <TableColumn fx:id="tableImage" minWidth="124.0" prefWidth="124.0" style="-fx-alignment: center-left" text="Resim"/>
-                <TableColumn fx:id="tableModel" minWidth="125.0" prefWidth="125.0" style="-fx-alignment: center-left" text="Model"/>
-                <TableColumn fx:id="tableTitle" minWidth="75.0" prefWidth="75.0" style="-fx-alignment: center-left" text="Başlık"/>
-                <TableColumn fx:id="tableSpecs1" minWidth="75.0" prefWidth="75.0" style="-fx-alignment: center-left" text="Yıl"/>
-                <TableColumn fx:id="tableSpecs2" minWidth="75.0" prefWidth="75.0" style="-fx-alignment: center-right" text="Km"/>
-                <TableColumn fx:id="tableSpecs3" minWidth="75.0" prefWidth="75.0" style="-fx-alignment: center" text="Renk"/>
-                <TableColumn fx:id="tablePrice" minWidth="100.0" prefWidth="100.0" style="-fx-alignment: center-right" text="Fiyat"/>
-                <TableColumn fx:id="tableAverage" minWidth="100.0" prefWidth="100.0" style="-fx-alignment: center-right" text="Ortalama"/>
-                <TableColumn fx:id="tableDifference" minWidth="50.0" prefWidth="50.0" style="-fx-alignment: center-right" text="Fark"/>
-                <TableColumn fx:id="tablePostDate" minWidth="125.0" prefWidth="125.0" style="-fx-alignment: center" text="İlan Tarihi"/>
-                <TableColumn fx:id="tableLocation" id="tableLocation"  prefWidth="Infinity" text="            Konum"/>
-            </columns>
-        </TableView>
+      <VBox prefWidth="1086.0">
+         <BorderPane.margin>
+            <Insets bottom="1.0" />
+         </BorderPane.margin>
+              <TableView fx:id="table" onMouseClicked="#handleTableClick">
+                  <placeholder>
+                      <Label fx:id="tableInfo" text="Sonuçları Görmek İçin Arama Yapın" />
+                  </placeholder>
+                  <columns>
+                      <TableColumn fx:id="tableImage" minWidth="124.0" prefWidth="124.0" style="-fx-alignment: center-left" text="Resim" />
+                      <TableColumn fx:id="tableModel" minWidth="125.0" prefWidth="125.0" style="-fx-alignment: center-left" text="Model" />
+                      <TableColumn fx:id="tableTitle" minWidth="75.0" prefWidth="75.0" style="-fx-alignment: center-left" text="Başlık" />
+                      <TableColumn fx:id="tableSpecs1" minWidth="75.0" prefWidth="75.0" style="-fx-alignment: center-left" text="Yıl" />
+                      <TableColumn fx:id="tableSpecs2" minWidth="75.0" prefWidth="75.0" style="-fx-alignment: center-right" text="Km" />
+                      <TableColumn fx:id="tableSpecs3" minWidth="75.0" prefWidth="75.0" style="-fx-alignment: center-left" text="Renk" />
+                      <TableColumn fx:id="tablePrice" minWidth="100.0" prefWidth="100.0" style="-fx-alignment: center-right" text="Fiyat" />
+                      <TableColumn fx:id="tableAverage" minWidth="100.0" prefWidth="100.0" style="-fx-alignment: center-right" text="Ortalama" />
+                      <TableColumn fx:id="tableDifference" minWidth="50.0" prefWidth="50.0" style="-fx-alignment: center-right" text="Fark" />
+                      <TableColumn fx:id="tablePostDate" minWidth="125.0" prefWidth="125.0" style="-fx-alignment: center-left" text="İlan Tarihi" />
+                      <TableColumn id="tableLocation" fx:id="tableLocation" prefWidth="Infinity" text="            Konum" />
+                  </columns>
+              </TableView>
+      </VBox>
     </center>
 </BorderPane>

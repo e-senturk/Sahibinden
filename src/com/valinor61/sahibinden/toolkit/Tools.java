@@ -10,7 +10,6 @@ import java.util.Locale;
 
 public class Tools {
 
-
     //Tools sadece araçları içerir tools üzerinden nesne oluşturulamaz.
     private Tools() {
     }
@@ -30,7 +29,6 @@ public class Tools {
                 index = stop + end.length();
                 newList.add(split.substring(start + begin.length(), stop).trim());
             }
-
         }
         return newList;
     }
@@ -141,7 +139,7 @@ public class Tools {
                 number.append(numberText.charAt(i));
             }
         }
-        if (number.length() == 0) {
+        if (number.length() == 0 || number.length() > 9) {
             return 0;
         }
         return Integer.parseInt(number.toString());

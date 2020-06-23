@@ -86,6 +86,7 @@ public class LaptopList extends TableList {
         return model;
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static String calculateLaptopLink(Laptop laptop, LinkedList<DataBase> dataBases, ArrayList<Boolean> activationList, String keyWord, String lastXDays, int[] ranges, boolean[] processorValues) {
         StringBuilder link = new StringBuilder();
         link.append("https://www.sahibinden.com/");
