@@ -1,6 +1,5 @@
 package com.valinor61.sahibinden.toolkit.extra;
 
-import org.jetbrains.annotations.NotNull;
 
 public class Difference implements Comparable<Difference>, NumberString {
     private final int diferenceValue;
@@ -38,7 +37,7 @@ public class Difference implements Comparable<Difference>, NumberString {
     }
 
     @Override
-    public int compareTo(@NotNull Difference o) {
+    public int compareTo(Difference o) {
         return Integer.compare(this.differenceRatio, o.differenceRatio);
     }
 }

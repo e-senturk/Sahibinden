@@ -1,8 +1,6 @@
 package com.valinor61.sahibinden.car;
 
 import com.valinor61.sahibinden.toolkit.Tools;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 public class Car extends DetailInfo {
     private final String series;
@@ -34,8 +32,6 @@ public class Car extends DetailInfo {
         this.chasis = chasis;
     }
 
-    @NotNull
-    @Contract("_ -> new")
     public static Car generateCar(String url) {
         String longText = Tools.findBetween(url, "<span class=\"classifiedId\"", "classifiedIdBox", 0);
         //Marka oluşturuldu.

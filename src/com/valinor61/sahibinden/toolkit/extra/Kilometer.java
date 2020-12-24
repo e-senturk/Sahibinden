@@ -1,6 +1,5 @@
 package com.valinor61.sahibinden.toolkit.extra;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -18,7 +17,7 @@ public class Kilometer implements Comparable<Kilometer>, NumberString {
     }
 
     @Override
-    public int compareTo(@NotNull Kilometer o) {
+    public int compareTo(Kilometer o) {
         return Integer.compare(this.kmValue, o.kmValue);
     }
 }

@@ -4,7 +4,6 @@ import com.valinor61.sahibinden.Controller;
 import com.valinor61.sahibinden.connection.Firefox;
 import com.valinor61.sahibinden.list.CarList;
 import com.valinor61.sahibinden.toolkit.Tools;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -56,7 +55,7 @@ public class Settings {
         this.searchSpeed = searchSpeed;
     }
 
-    public static void writeActivationValues(@NotNull ArrayList<Boolean> activationList, int[] ranges, String keyWord, String lastXDay, boolean[] firefox, int searchSpeed, int imageSpeed, boolean imageShown, boolean showAllItems) {
+    public static void writeActivationValues(ArrayList<Boolean> activationList, int[] ranges, String keyWord, String lastXDay, boolean[] firefox, int searchSpeed, int imageSpeed, boolean imageShown, boolean showAllItems) {
         try {
             int firefoxValue = 0;
             if (firefox[1])

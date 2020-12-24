@@ -1,7 +1,6 @@
 package com.valinor61.sahibinden.toolkit.extra;
 
 import com.valinor61.sahibinden.toolkit.Tools;
-import org.jetbrains.annotations.NotNull;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -23,7 +22,7 @@ public class Ram implements Comparable<Ram>, NumberString {
     }
 
     @Override
-    public int compareTo(@NotNull Ram o) {
+    public int compareTo(Ram o) {
         return Integer.compare(this.ramValue, o.ramValue);
     }
 }

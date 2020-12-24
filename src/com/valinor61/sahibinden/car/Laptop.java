@@ -1,8 +1,6 @@
 package com.valinor61.sahibinden.car;
 
 import com.valinor61.sahibinden.toolkit.Tools;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 public class Laptop extends DetailInfo {
     private final String processor;
@@ -26,8 +24,6 @@ public class Laptop extends DetailInfo {
         this.status = status;
     }
 
-    @NotNull
-    @Contract("_ -> new")
     public static Laptop generateLaptop(String url) {
         String longText = Tools.findBetween(url, "<span class=\"classifiedId\"", "classifiedIdBox", 0);
         //Marka oluşturuldu.

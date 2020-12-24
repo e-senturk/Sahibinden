@@ -1,7 +1,6 @@
 package com.valinor61.sahibinden.toolkit.extra;
 
 import com.valinor61.sahibinden.toolkit.Tools;
-import org.jetbrains.annotations.NotNull;
 
 public class Price implements Comparable<Price>, NumberString {
     private final int priceValue;
@@ -20,7 +19,7 @@ public class Price implements Comparable<Price>, NumberString {
     }
 
     @Override
-    public int compareTo(@NotNull Price o) {
+    public int compareTo(Price o) {
         return Integer.compare(this.priceValue, o.priceValue);
     }
 }

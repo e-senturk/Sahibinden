@@ -1,7 +1,6 @@
 package com.valinor61.sahibinden.toolkit;
 
 import com.valinor61.sahibinden.data.DataBase;
-import org.jetbrains.annotations.NotNull;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ public class Tools {
     }
 
     //İki kelime arasındakileri bulup bir liste oluşturan fonksiyon
-    @NotNull
     public static LinkedList<String> findBetweenList(String split, String begin, String end) {
         LinkedList<String> newList = new LinkedList<>();
         int index = 0;
@@ -34,8 +32,7 @@ public class Tools {
     }
 
     //İki kelime arasındaki ilk bulunan bölümü bulan fonksiyon.
-    @NotNull
-    public static String findBetween(@NotNull String split, String begin, String end, int startIndex) {
+    public static String findBetween(String split, String begin, String end, int startIndex) {
         int start = split.indexOf(begin, startIndex);
         int stop = split.indexOf(end, start + begin.length());
         if (start == -1 || stop == -1) {
@@ -45,8 +42,7 @@ public class Tools {
         }
     }
 
-    @NotNull
-    public static String removeNbsp(@NotNull String text) {
+    public static String removeNbsp(String text) {
         if (!text.contains("&nbsp")) {
             return text;
         }
@@ -54,15 +50,13 @@ public class Tools {
         return findBetween(text, "<<<", "&", 0);
     }
 
-    @NotNull
-    public static String removeTurkishCharacter(@NotNull String text) {
+    public static String removeTurkishCharacter(String text) {
         return text.replace("ç", "c").replace("ö", "o").replace("ş", "s")
                 .replace("ğ", "g").replace("ü", "u").replace("ı", "i")
                 .replace("Ç", "C").replace("Ö", "O").replace("Ş", "S")
                 .replace("Ğ", "G").replace("Ü", "U").replace("İ", "i").replace("ë", "e").replace("é", "e");
     }
 
-    @NotNull
     public static String formatText(String text) {
         return removeTurkishCharacter(removeNbsp(text.toLowerCase())).trim().replace("&amp;", "").replace(" ", "-")
                 .replace("---", "-").replace("--", "-");
@@ -184,7 +178,7 @@ public class Tools {
     }
 
     public static String getInfo(String html) {
-        return findBetween(html, "<div class=\"classifiedBreadCrumb\">", "</div>", 0);
+        return findBetween(html, "\"classifiedBreadCrumb\"", "div", 0);
     }
 
     public static String formatHorsePower(String text) {

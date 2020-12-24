@@ -72,14 +72,15 @@
     -fx-pref-height: 22.5;
     -fx-font-weight: bold;
 }
-.accordion .titled-pane
-{
+
+.accordion .titled-pane {
     -fx-text-fill: white;
 }
 
 .accordion .titled-pane > .title > .arrow-button .arrow {
     -fx-background-color: white;
 }
+
 .check-box:selected > .box > .mark,
 .check-box:indeterminate > .box > .mark {
     -fx-background-color: #282828;
@@ -98,6 +99,7 @@ VBox#generalSettings {
     -fx-border-color: white;
     -fx-border-width: 3px 0px 0px 0px;
 }
+
 .root {
     -fx-base: lavender;
     -fx-font-size: 12px;
