@@ -370,8 +370,6 @@ public class Controller {
                     System.out.println("Hello");
                     //Reading info for checking detailed web page confirmation
                     String info = Tools.getInfo(htmlContent);
-                    System.out.println(info);
-
                     //Printing Table Text
                     Platform.runLater(() -> tableInfo.setText("Sonuçlar Hesaplanıyor"));
                     //Checking if Link is a carLink
